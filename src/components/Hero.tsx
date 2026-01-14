@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import bg from "../assets/Slide3.png";
 import navtc from "../assets/navtc.png";
 import youth from "../assets/youth.png";
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/autoplay';
 import 'swiper/css/free-mode';
-
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -41,9 +41,9 @@ const Hero: React.FC = () => {
       transition: {
         staggerChildren: 0.2,
         delayChildren: 0.3,
-      },
-    },
-  } as const;
+      }
+    }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -54,9 +54,9 @@ const Hero: React.FC = () => {
         type: "spring",
         damping: 12,
         stiffness: 100,
-      },
-    },
-  } as const;
+      }
+    }
+  };
 
   const buttonVariants = {
     hidden: { scale: 0.8, opacity: 0 },
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
         damping: 15,
         stiffness: 200,
         delay: 0.5,
-      },
+      }
     },
     hover: {
       scale: 1.05,
@@ -76,10 +76,12 @@ const Hero: React.FC = () => {
         type: "spring",
         damping: 15,
         stiffness: 400,
-      },
+      }
     },
-    tap: { scale: 0.95 },
-  } as const;
+    tap: {
+      scale: 0.95,
+    }
+  };
 
   const badgeVariants = {
     hidden: { opacity: 0, x: -20 },
@@ -91,9 +93,9 @@ const Hero: React.FC = () => {
         damping: 15,
         stiffness: 100,
         delay: 0.7,
-      },
-    },
-  } as const;
+      }
+    }
+  };
 
   const carouselVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -105,19 +107,19 @@ const Hero: React.FC = () => {
         damping: 20,
         stiffness: 80,
         delay: 0.4,
-      },
-    },
-  } as const;
+      }
+    }
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-screen pt-30 bg-cover bg-center bg-no-repeat bg-black flex items-center justify-center px-4 font-poppins"
+      className="w-full h-screen pt-30 md:pt-20 bg-cover bg-center bg-no-repeat bg-black flex items-center justify-center px-4 font-poppins"
     >
       {/* overlay */}
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
         transition={{ duration: 1 }}
@@ -125,29 +127,37 @@ const Hero: React.FC = () => {
       />
 
       <div className="relative container mx-auto">
-        <motion.div
+        <motion.div 
           ref={ref}
           initial="hidden"
           animate={controls}
           variants={containerVariants}
           className="flex flex-col lg:flex-row items-center justify-between gap-10"
         >
+
           {/* LEFT CONTENT */}
           <motion.div variants={itemVariants} className="text-white max-w-[400px] md:max-w-2xl text-center lg:text-left">
-            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-bold leading-tight px-4">
-              Become Top{" "}
-              <motion.span
+            <motion.h1 
+              variants={itemVariants}
+              className="text-3xl md:text-5xl font-bold leading-tight"
+            >
+              Become Top <motion.span 
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: "spring", damping: 15, stiffness: 200, delay: 0.2 }}
+                transition={{
+                  type: "spring",
+                  damping: 15,
+                  stiffness: 200,
+                  delay: 0.2,
+                }}
                 className="text-cyan-400 inline-block"
-              >
-                1%
-              </motion.span>{" "}
-              in the IT Fields
+              >1%</motion.span> in the IT Fields
             </motion.h1>
 
-            <motion.p variants={itemVariants} className="mt-6 text-lg lg:text-[18px] text-gray-200 px-5">
+            <motion.p 
+              variants={itemVariants}
+              className="mt-6 text-lg lg:text-[18px] text-gray-200"
+            >
               Join Pakistan&apos;s Elite IT Training Institute, Building World Class IT Professionals
             </motion.p>
 
@@ -156,68 +166,127 @@ const Hero: React.FC = () => {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="bg-[#0D76BC] text-white px-10 py-4 w-[350px] rounded-full font-semibold text-lg transition shadow-xl"
+                className="bg-[#0D76BC] text-white px-10 py-4 w-full md:w-[350px] rounded-full font-semibold text-lg transition shadow-xl"
               >
-                Enroll No
+                Enroll Now
               </motion.button>
 
-              <motion.div
+              <motion.div 
                 variants={badgeVariants}
                 whileHover={{ scale: 1.05 }}
-                className="border border-gray-100/10 rounded-2xl p-5 flex gap-6 backdrop-blur-md shadow-xl"
+                className="border-1 border-gray-100/10 rounded-2xl p-5 flex gap-6 backdrop-blur-md shadow-xl"
               >
-                <motion.img src={navtc} alt="NAVTTC" className="w-25 h-auto" />
-                <motion.img src={youth} alt="Youth Program" className="w-25 h-auto" />
+                <motion.img 
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  src={navtc} 
+                  alt="NAVTTC" 
+                  className="w-24 h-auto" 
+                />
+                <motion.img 
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  src={youth} 
+                  alt="Youth Program" 
+                  className="w-24 h-auto" 
+                />
               </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT SIDE – SWIPER */}
+          {/* RIGHT SIDE – SWIPER CAROUSEL */}
           <motion.div variants={carouselVariants} className="w-full lg:w-[360px]">
-            {/* Mobile */}
-            <div className="block lg:hidden">
+            {/* Mobile - Horizontal Swiper */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", delay: 0.6 }}
+              className="block lg:hidden"
+            >
               <Swiper
                 modules={[Autoplay, FreeMode]}
                 spaceBetween={16}
-                slidesPerView={1.2}
-                centeredSlides
-                freeMode
-                autoplay={{ delay: 0, disableOnInteraction: false }}
+                slidesPerView={2.2}
+                centeredSlides={true}
+                freeMode={true}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                }}
                 speed={3000}
-                loop
+                loop={true}
+                className="w-full"
               >
-                {programs.map((item, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="py-4 px-6 text-center text-gray-200 rounded-2xl border border-white/20 backdrop-blur-md">
+                {programs.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="
+                        w-full
+                        bg-transparent backdrop-blur-md
+                        text-[#0D76BC] text-center font-semibold text-lg
+                        py-4 px-6 rounded-2xl
+                        shadow-lg hover:shadow-2xl
+                        transition-all duration-300
+                        border border-white/20
+                      "
+                    >
                       {item}
-                    </div>
+                    </motion.div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
+            </motion.div>
 
-            {/* Desktop */}
-            <div className="hidden lg:block">
+            {/* Desktop - Vertical Swiper */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ type: "spring", delay: 0.8 }}
+              className="hidden lg:block"
+            >
               <Swiper
                 modules={[Autoplay]}
                 direction="vertical"
                 spaceBetween={6}
                 slidesPerView={4.5}
-                autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: false }}
+                autoplay={{
+                  delay: 0,
+                  disableOnInteraction: false,
+                  reverseDirection: false,
+                }}
                 speed={4000}
-                loop
-                className="h-[450px]"
+                loop={true}
+                loopedSlides={programs.length}
+                className="h-[450px] w-full"
               >
-                {[...programs, ...programs].map((item, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="h-[80px] flex items-center justify-center rounded-2xl border border-cyan-500/20 backdrop-blur-md text-gray-200 font-bold font-[poppins]">
+                {[...programs, ...programs].map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="
+                        w-full
+                        bg-gradient-to-br from-black/40 to-gray-900/40 backdrop-blur-md
+                        text-white text-center font-semibold text-lg
+                        px-6 rounded-2xl
+                        shadow-xl hover:shadow-2xl
+                        transition-all duration-500
+                        border border-cyan-500/20 hover:border-cyan-400/40
+                        flex items-center justify-center
+                        h-[80px]
+                        py-3
+                      "
+                    >
                       {item}
-                    </div>
+                    </motion.div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-            </div>
+            </motion.div>
           </motion.div>
+
         </motion.div>
       </div>
     </motion.div>
