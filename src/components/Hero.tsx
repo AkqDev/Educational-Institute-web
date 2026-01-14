@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import bg from "../assets/Slide3.png";
+import { useEffect } from 'react';
 import navtc from "../assets/navtc.png";
 import youth from "../assets/youth.png";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -51,7 +50,7 @@ const Hero: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       }
@@ -64,7 +63,7 @@ const Hero: React.FC = () => {
       scale: 1,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 15,
         stiffness: 200,
         delay: 0.5,
@@ -73,7 +72,7 @@ const Hero: React.FC = () => {
     hover: {
       scale: 1.05,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 15,
         stiffness: 400,
       }
@@ -89,7 +88,7 @@ const Hero: React.FC = () => {
       opacity: 1,
       x: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 15,
         stiffness: 100,
         delay: 0.7,
@@ -103,7 +102,7 @@ const Hero: React.FC = () => {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 80,
         delay: 0.4,
@@ -145,7 +144,7 @@ const Hero: React.FC = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{
-                  type: "spring",
+                  type: "spring" as const,
                   damping: 15,
                   stiffness: 200,
                   delay: 0.2,
@@ -178,14 +177,14 @@ const Hero: React.FC = () => {
               >
                 <motion.img 
                   whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  transition={{ type: "spring" as const, stiffness: 400 }}
                   src={navtc} 
                   alt="NAVTTC" 
                   className="w-24 h-auto" 
                 />
                 <motion.img 
                   whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  transition={{ type: "spring" as const, stiffness: 400 }}
                   src={youth} 
                   alt="Youth Program" 
                   className="w-24 h-auto" 
@@ -200,13 +199,13 @@ const Hero: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", delay: 0.6 }}
+              transition={{ type: "spring" as const, delay: 0.6 }}
               className="block lg:hidden"
             >
               <Swiper
                 modules={[Autoplay, FreeMode]}
                 spaceBetween={16}
-                slidesPerView={2.2}
+                slidesPerView={1.7}
                 centeredSlides={true}
                 freeMode={true}
                 autoplay={{
@@ -221,11 +220,11 @@ const Hero: React.FC = () => {
                   <SwiperSlide key={index}>
                     <motion.div
                       whileHover={{ scale: 1.05, y: -5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: "spring" as const, stiffness: 300 }}
                       className="
                         w-full
                         bg-transparent backdrop-blur-md
-                        text-[#0D76BC] text-center font-semibold text-lg
+                        text-gray-200 text-center font-semibold text-lg
                         py-4 px-6 rounded-2xl
                         shadow-lg hover:shadow-2xl
                         transition-all duration-300
@@ -243,7 +242,7 @@ const Hero: React.FC = () => {
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: "spring", delay: 0.8 }}
+              transition={{ type: "spring" as const, delay: 0.8 }}
               className="hidden lg:block"
             >
               <Swiper
@@ -258,14 +257,13 @@ const Hero: React.FC = () => {
                 }}
                 speed={4000}
                 loop={true}
-                loopedSlides={programs.length}
-                className="h-[450px] w-full"
+                className="h-[420px] w-full"
               >
                 {[...programs, ...programs].map((item, index) => (
                   <SwiperSlide key={index}>
                     <motion.div
                       whileHover={{ scale: 1.05, y: -2 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: "spring" as const, stiffness: 300 }}
                       className="
                         w-full
                         bg-gradient-to-br from-black/40 to-gray-900/40 backdrop-blur-md
@@ -275,7 +273,7 @@ const Hero: React.FC = () => {
                         transition-all duration-500
                         border border-cyan-500/20 hover:border-cyan-400/40
                         flex items-center justify-center
-                        h-[80px]
+                        h-[70px]
                         py-3
                       "
                     >
