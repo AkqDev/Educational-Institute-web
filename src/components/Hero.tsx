@@ -112,7 +112,7 @@ const Hero: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-screen pt-30 md:pt-20 bg-cover bg-center bg-no-repeat bg-black flex items-center justify-center px-4 font-poppins"
+      className="w-full h-screen pt-10 md:pt-20 bg-cover bg-center bg-no-repeat bg-black flex items-center justify-center px-4 font-poppins"
     >
       {/* overlay */}
       <motion.div 
