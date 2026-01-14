@@ -158,7 +158,7 @@ const Hero: React.FC = () => {
                 whileTap="tap"
                 className="bg-[#0D76BC] text-white px-10 py-4 w-[350px] rounded-full font-semibold text-lg transition shadow-xl"
               >
-                Enroll Now
+                Enroll No
               </motion.button>
 
               <motion.div
