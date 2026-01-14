@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-import logo from "../assets/logo1.png";
+import logo from "../assets/logo.png";
 
 const WHATSAPP_LINK = "https://wa.me/923001234567"; // replace number
 
