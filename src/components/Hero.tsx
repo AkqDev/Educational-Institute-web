@@ -238,7 +238,7 @@ const Hero: React.FC = () => {
               </Swiper>
             </motion.div>
 
-            {/* Desktop - Vertical Swiper */}
+            {/* Desktop -Swiper */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -272,8 +272,7 @@ const Hero: React.FC = () => {
                         shadow-xl hover:shadow-2xl
                         transition-all duration-500
                         border border-cyan-500/20 hover:border-cyan-400/40
-                        flex items-center justify-center
-                        h-[70px]
+                        flex items-center justify-center h-[70px]
                         py-3
                       "
                     >
