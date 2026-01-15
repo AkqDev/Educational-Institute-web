@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import AuroraBackground from './AuroraBackground'; // Add this import
 
 const programs = [
   "AI Agents",
@@ -112,17 +113,20 @@ const Hero: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-screen pt-10 md:pt-20 bg-cover bg-center bg-no-repeat bg-black flex items-center justify-center px-4 font-poppins"
+      className="w-full h-screen pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden bg-black"
     >
-      {/* overlay */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-black/40"
+      {/* Aurora OGL Background */}
+      <AuroraBackground
+        speed={0.7}
+        blend={0.8}
+        colorStops={['#0D76BC', '#1E90FF', '#0D76BC']} // Matches your theme
+        amplitude={1.2}
       />
 
-      <div className="relative container mx-auto">
+      {/* Dark overlay for better text contrast */}
+      <div className="absolute inset-0 bg-black/20 z-0" />
+
+      <div className="relative container mx-auto z-10">
         <motion.div 
           ref={ref}
           initial="hidden"
@@ -132,7 +136,7 @@ const Hero: React.FC = () => {
         >
 
           {/* LEFT CONTENT */}
-          <motion.div variants={itemVariants} className="text-white max-w-[400px] md:max-w-2xl text-center lg:text-left">
+          <motion.div variants={itemVariants} className="text-white max-w-[400px] md:max-w-2xl text-center lg:text-left relative z-20">
             <motion.h1 
               variants={itemVariants}
               className="text-3xl md:text-5xl font-bold leading-tight"
@@ -162,7 +166,7 @@ const Hero: React.FC = () => {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="bg-[#0D76BC] text-white px-10 py-4 w-full md:w-[350px] rounded-full font-semibold text-lg transition shadow-xl"
+                className="bg-[#0D76BC] text-white px-10 py-4 w-full md:w-[350px] rounded-full font-semibold text-lg transition shadow-xl hover:shadow-2xl z-20"
               >
                 Enroll Now
               </motion.button>
@@ -170,7 +174,7 @@ const Hero: React.FC = () => {
               <motion.div 
                 variants={badgeVariants}
                 whileHover={{ scale: 1.05 }}
-                className="border-1 border-gray-100/10 rounded-2xl p-5 flex gap-6 backdrop-blur-md shadow-xl"
+                className="border-1 border-gray-100/10 rounded-2xl p-5 flex gap-6 backdrop-blur-md shadow-xl bg-black/30 z-20"
               >
                 <motion.img 
                   whileHover={{ scale: 1.1 }}
@@ -191,7 +195,7 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* RIGHT SIDE – SWIPER CAROUSEL */}
-          <motion.div variants={carouselVariants} className="w-full lg:w-[360px]">
+          <motion.div variants={carouselVariants} className="w-full lg:w-[360px] relative z-20">
             {/* Mobile - Horizontal Swiper */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
@@ -220,12 +224,13 @@ const Hero: React.FC = () => {
                       transition={{ type: "spring" as const, stiffness: 300 }}
                       className="
                         w-full
-                        bg-transparent backdrop-blur-md
+                        bg-black/40 backdrop-blur-md
                         text-gray-200 text-center font-semibold text-lg
                         py-4 px-6 rounded-2xl
                         shadow-lg hover:shadow-2xl
                         transition-all duration-300
                         border border-white/20
+                        z-20
                       "
                     >
                       {item}
@@ -235,7 +240,7 @@ const Hero: React.FC = () => {
               </Swiper>
             </motion.div>
 
-            {/* Desktop -Swiper */}
+            {/* Desktop - Swiper */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -263,14 +268,15 @@ const Hero: React.FC = () => {
                       transition={{ type: "spring" as const, stiffness: 300 }}
                       className="
                         w-full
-                        bg-gradient-to-br from-black/40 to-gray-900/40 backdrop-blur-md
+                        bg-black/40 backdrop-blur-md
                         text-white text-center font-semibold text-lg
                         px-6 rounded-2xl
                         shadow-xl hover:shadow-2xl
                         transition-all duration-500
-                        border border-cyan-500/20 hover:border-cyan-400/40
+                        border border-cyan-500/30 hover:border-cyan-400/50
                         flex items-center justify-center h-[70px]
                         py-3
+                        z-20
                       "
                     >
                       {item}
