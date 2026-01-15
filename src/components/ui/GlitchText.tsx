@@ -1,5 +1,5 @@
-// src/components/ui/Glitchtext.tsx - UPDATED VERSION
-import { FC, CSSProperties } from 'react';
+// src/components/ui/Glitchtext.tsx - CORRECTED VERSION
+import type { FC, CSSProperties } from 'react'; // Add 'type' keyword
 
 interface GlitchTextProps {
   children: string;
@@ -26,7 +26,7 @@ const GlitchText: FC<GlitchTextProps> = ({
   const inlineStyles: CustomCSSProperties = {
     '--after-duration': `${speed * 3}s`,
     '--before-duration': `${speed * 2}s`,
-    '--after-shadow': enableShadows ? '-5px 0 white' : 'none', // Changed red to white
+    '--after-shadow': enableShadows ? '-5px 0 white' : 'none',
     '--before-shadow': enableShadows ? '5px 0 cyan' : 'none'
   };
 
