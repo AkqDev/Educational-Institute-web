@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const WHATSAPP_LINK = "https://wa.me/923001234567"; // replace number
+const INSTAGRAM_LINK = "https://www.instagram.com/your_username"; // replace username
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,25 +16,63 @@ const Navbar = () => {
       <div className="w-full absolute top-0 left-0 z-40 bg-transparent">
         <div className="flex justify-between md:justify-evenly items-center my-2 md:my-3 px-6 md:px-16">
 
-          {/* LOGO */}
-          <img src={logo} alt="logo" className="w-22 h-22"/>
+          {/* LOGO (GO TO HOME) */}
+          <Link to="/">
+            <img src={logo} alt="logo" className="w-22 h-22 cursor-pointer" />
+          </Link>
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex bg-gray-200 rounded-full text-[#0D76BC] p-5 px-10 font-bold">
             <nav>
               <ul className="flex space-x-6">
-                {["Free Programs", "Contact Us", "Our Social", "Testimonials"].map(
-                  (item, index) => (
-                    <li key={index}>
-                      <a
-                        href="#"
-                        className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
+
+                <li>
+                  <Link
+                    to="/"
+                    className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
+                  >
+                    Home
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/free-programs"
+                    className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
+                  >
+                    Free Programs
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    to="/contact"
+                    className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+
+                <li>
+                  <a
+                    href={INSTAGRAM_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
+                  >
+                    Our Social
+                  </a>
+                </li>
+
+                <li>
+                  <Link
+                    to="/testimonials"
+                    className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
+                  >
+                    Testimonials
+                  </Link>
+                </li>
+
               </ul>
             </nav>
           </div>
@@ -71,7 +111,9 @@ const Navbar = () => {
           >
             {/* HEADER */}
             <div className="flex justify-between items-center p-6">
-              <img src={logo} alt="logo" className="w-20 h-20" />
+              <Link to="/" onClick={() => setIsOpen(false)}>
+                <img src={logo} alt="logo" className="w-20 h-20 cursor-pointer" />
+              </Link>
 
               <button
                 onClick={() => setIsOpen(false)}
@@ -83,18 +125,23 @@ const Navbar = () => {
 
             {/* MENU ITEMS */}
             <nav className="flex flex-col items-center justify-center gap-6 text-white text-xl font-bold flex-1">
-              {["Free Programs", "Contact Us", "Our Social", "Testimonials"].map(
-                (item, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    onClick={() => setIsOpen(false)}
-                    className="px-6 py-3 rounded-full transition-all duration-300 hover:bg-[#0D76BC]"
-                  >
-                    {item}
-                  </a>
-                )
-              )}
+
+              <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
+              <Link to="/free-programs" onClick={() => setIsOpen(false)}>Free Programs</Link>
+              <Link to="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
+
+              <a
+                href={INSTAGRAM_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+              >
+                Our Social
+              </a>
+
+              <Link to="/testimonials" onClick={() => setIsOpen(false)}>
+                Testimonials
+              </Link>
 
               {/* WHATSAPP BUTTON */}
               <a
@@ -113,4 +160,5 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
+
