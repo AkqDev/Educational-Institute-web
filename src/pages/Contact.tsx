@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import GlitchText from "@/components/ui/GlitchText"; // Fixed: Changed 'Glitchtext' to 'GlitchText'
+import GlitchText from "../components/ui/GlitchText";
 
 const Contact: React.FC = () => {
   const [name, setName] = useState(''); 
