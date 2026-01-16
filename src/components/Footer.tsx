@@ -6,10 +6,10 @@ import logo from "../assets/logo.png";
 
 const Footer: React.FC = () => {
   return (
-    <div className="md:bg-[#000] bg-[#161616] border-t rounded-2xl md:border-0 text-white w-full h-auto py-10 px-4 md:px-10 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
+    <div className="md:bg-[#000] bg-[#161616] border-t rounded-2xl md:border-0 text-white w-full h-auto py-10 px-2 md:px-4 md:px-10 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
 
       {/* Top Footer - Logo, Menu, Contact */}
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start bg-[#161616] rounded-3xl p-8 gap-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start bg-[#161616] rounded-3xl p-2 md:p-8 gap-10">
 
         {/* LEFT Column - Logo & About */}
         <div className="md:w-1/3 flex justify-start">
