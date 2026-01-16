@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
   const [name, setName] = useState(''); 
   const [email, setEmail] = useState(''); 
   const [message, setMessage] = useState(''); 
-  const whatsappNumber = "923001234567"; // replace with your WhatsApp number
+  const whatsappNumber = "923701393075"; // replace with your WhatsApp number
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); 

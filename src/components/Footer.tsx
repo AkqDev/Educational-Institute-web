@@ -1,11 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
-import { FaWhatsapp, FaInstagram, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaWhatsapp,
+  FaInstagram,
+  FaFacebookF,
+  FaLinkedinIn,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 
 const Footer: React.FC = () => {
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      url: "https://www.instagram.com/digitalerainstitute/?igsh=MWhnaGJoZXQweHRrcQ%3D%3D#",
+    },
+    {
+      icon: FaFacebookF,
+      url: "https://www.facebook.com/digitaleraskill?rdid=PD4URBu6rwikb86i&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FRuvEaKgG%2F#",
+    },
+    {
+      icon: FaLinkedinIn,
+      url: "https://www.linkedin.com/in/your_profile",
+    },
+  ];
+
+  const contactLinks = [
+    {
+      icon: <FiMail size={18} />,
+      text: "digitaleradeit@gmail.com",
+      link: "mailto:digitaleradeit@gmail.com",
+    },
+    {
+      icon: <FiPhone size={18} />,
+      text: "0370-1393075",
+      link: "tel:0370-1393075",
+    },
+    {
+      icon: <FiMapPin size={18} />,
+      text: "123 Main Street Anytown, USA, 2141",
+      link: "https://www.google.com/maps?q=123+Main+Street+Anytown+USA+2141",
+    },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,9 +52,8 @@ const Footer: React.FC = () => {
       viewport={{ once: true }}
       className="md:bg-[#000] bg-[#161616] border-t rounded-2xl md:border-0 text-white w-full h-auto py-10 px-2 md:px-4 md:px-10 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]"
     >
-      {/* Top Footer */}
+      {/* TOP FOOTER */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start bg-[#161616] rounded-3xl p-2 md:p-8 gap-10">
-
         {/* LEFT */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
@@ -28,7 +65,12 @@ const Footer: React.FC = () => {
           <div className="text-left space-y-4">
             <img src={logo} alt="logo" className="w-20 h-20" />
             <p className="text-sm leading-relaxed opacity-90">
-              DigitalEra is a NAVTTC-approved institute offering high-quality, industry-standard courses with a strong focus on practical skills. We prepare students for real-world careers through hands-on learning and professional training. After course completion, we provide internship opportunities to support career growth and success.
+              DigitalEra is a NAVTTC-approved institute offering high-quality,
+              industry-standard courses with a strong focus on practical skills.
+              We prepare students for real-world careers through hands-on
+              learning and professional training. After course completion, we
+              provide internship opportunities to support career growth and
+              success.
             </p>
           </div>
         </motion.div>
@@ -42,7 +84,9 @@ const Footer: React.FC = () => {
           className="md:w-1/3 flex justify-center md:mt-14"
         >
           <div className="space-y-4">
-            <h3 className="font-bold text-lg mb-3 text-center">Quick Links</h3>
+            <h3 className="font-bold text-lg mb-3 text-center">
+              Quick Links
+            </h3>
             <ul className="space-y-2 md:text-center">
               {[
                 { name: "Home", path: "/" },
@@ -72,20 +116,7 @@ const Footer: React.FC = () => {
           className="md:w-1/3 flex justify-end"
         >
           <div className="space-y-4 w-full md:max-w-sm">
-
-            {[{
-              icon: <FiMail size={18} />,
-              text: "agencee@email.com",
-              link: "mailto:agencee@email.com"
-            }, {
-              icon: <FiPhone size={18} />,
-              text: "+54 2541 22 55 66",
-              link: "tel:+542541225566"
-            }, {
-              icon: <FiMapPin size={18} />,
-              text: "123 Main Street Anytown, USA, 2141",
-              link: "https://www.google.com/maps?q=123+Main+Street+Anytown+USA+2141"
-            }].map((item, i) => (
+            {contactLinks.map((item, i) => (
               <motion.a
                 key={i}
                 href={item.link}
@@ -102,7 +133,7 @@ const Footer: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Bottom Footer */}
+      {/* BOTTOM FOOTER */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -111,15 +142,19 @@ const Footer: React.FC = () => {
         className="max-w-[1400px] flex-col md:flex-row mx-auto flex justify-between items-center mt-4 px-4 md:px-10 bg-[#161616] rounded-3xl py-4"
       >
         <div className="text-sm text-white opacity-80">
-          &copy; {new Date().getFullYear()} DigitalEra of IT | Developed by Akbar Qureshi
+          &copy; {new Date().getFullYear()} DigitalEra of IT | Developed
+          by Akbar Qureshi
         </div>
 
         <div className="flex space-x-4 mt-4 md:mt-0">
-          {[FaInstagram, FaFacebookF, FaLinkedinIn].map((Icon, i) => (
+          {socialLinks.map(({ icon: Icon, url }, i) => (
             <motion.a
               key={i}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.15 }}
-              className="text-white bg-[#202020] p-3 rounded-full shadow-lg"
+              className="text-white bg-[#202020] p-3 rounded-full shadow-lg cursor-pointer"
             >
               <Icon size={18} />
             </motion.a>
@@ -127,9 +162,9 @@ const Footer: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* WhatsApp */}
+      {/* WHATSAPP FLOATING BUTTON */}
       <motion.a
-        href="https://wa.me/923001234567"
+        href="https://wa.me/923701393075"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}

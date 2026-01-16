@@ -4,8 +4,8 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-const WHATSAPP_LINK = "https://wa.me/923001234567"; // replace number
-const INSTAGRAM_LINK = "https://www.instagram.com/your_username"; // replace username
+const WHATSAPP_LINK = "https://wa.me/923701393075";
+const INSTAGRAM_LINK = "https://www.instagram.com/digitalerainstitute/?igsh=MWhnaGJoZXQweHRrcQ%3D%3D#";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
