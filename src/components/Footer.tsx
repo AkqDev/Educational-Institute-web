@@ -6,7 +6,7 @@ import logo from "../assets/logo.png";
 
 const Footer: React.FC = () => {
   return (
-    <div className="bg-[#000] text-white w-full h-auto py-10 px-4 md:px-10 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
+    <div className="md:bg-[#000] bg-[#161616] border-t rounded-2xl md:border-0 text-white w-full h-auto py-10 px-4 md:px-10 shadow-[0_-4px_10px_rgba(0,0,0,0.2)]">
 
       {/* Top Footer - Logo, Menu, Contact */}
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start bg-[#161616] rounded-3xl p-8 gap-10">
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
               href="https://www.google.com/maps?q=123+Main+Street+Anytown+USA+2141"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-sm font-medium bg-[#222222] p-6 rounded-2xl w-full md:w-auto justify-center hover:opacity-80 transition"
+              className="flex items-center gap-3 text-sm font-medium bg-[#222222] p-6 rounded-2xl w-115 md:w-auto justify-center hover:opacity-80 transition "
             >
               <FiMapPin size={18} />
               123 Main Street Anytown, USA, 2141
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Footer - Copyright & Social */}
-      <div className="max-w-[1400px] mx-auto flex justify-between items-center mt-4 px-4 md:px-10 bg-[#161616] rounded-3xl py-4">
+      <div className="max-w-[1400px] flex-col md:flex-row mx-auto flex justify-between items-center mt-4 px-4 md:px-10 bg-[#161616] rounded-3xl py-4">
 
         {/* Left - Copyright */}
         <div className="text-sm text-white opacity-80">
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Right - Social Icons */}
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 mt-4 md:mt-0">
           <a
             href="https://www.instagram.com/youraccount"
             target="_blank"
