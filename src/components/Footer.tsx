@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
               href="https://www.google.com/maps?q=123+Main+Street+Anytown+USA+2141"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-sm font-medium bg-[#222222] p-6 rounded-2xl w-115 md:w-auto justify-center hover:opacity-80 transition "
+              className="flex items-center gap-3 text-sm font-medium bg-[#222222] p-6 rounded-2xl w-110 md:w-auto justify-center hover:opacity-80 transition "
             >
               <FiMapPin size={18} />
               123 Main Street Anytown, USA, 2141
@@ -126,9 +126,9 @@ const Footer: React.FC = () => {
         href="https://wa.me/923001234567"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-10 right-5 z-50 bg-[#25D366] p-4 rounded-full shadow-lg md:hidden hover:scale-105 transition-transform"
+        className="fixed bottom-5 right-5 z-50 bg-[#0D76BC] p-4 rounded-full shadow-lg md:hidden hover:scale-105 transition-transform"
       >
-        <FaWhatsapp size={28} className="text-white" />
+        <FaWhatsapp size={18} className="text-white" />
       </a>
 
     </div>
