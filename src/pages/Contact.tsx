@@ -55,7 +55,7 @@ const Contact: React.FC = () => {
 
           {/* Form */}
           <motion.div 
-            className="p-8 rounded-3xl w-full md:w-2/3 max-w-3xl" 
+            className="p-2 rounded-3xl w-full md:w-2/3 max-w-3xl" 
             initial={{ opacity: 0, x: 100 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 1, delay: 0.5 }}
