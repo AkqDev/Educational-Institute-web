@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import { motion} from "framer-motion";
-import type { Variants } from "framer-motion"; 
+import { motion, useInView } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const faqs = [
   {
@@ -26,6 +26,7 @@ const faqs = [
   },
 ];
 
+// ---------------- Animation Variants ----------------
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
@@ -33,7 +34,7 @@ const containerVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.16, 1, 0.3, 1], // ✅ TS-safe easing
+      ease: [0.16, 1, 0.3, 1],
       staggerChildren: 0.15,
     },
   },
@@ -46,13 +47,15 @@ const itemVariants: Variants = {
 
 const Faqs = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { margin: "-150px" }); // animate when in viewport
 
   return (
     <motion.section
+      ref={sectionRef}
       variants={containerVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      animate={isInView ? "visible" : "hidden"} // animate in/out based on scroll
       className="w-full py-20 px-4"
     >
       <div className="max-w-5xl mx-auto text-center">
@@ -103,7 +106,7 @@ const Faqs = () => {
                     {faq.question}
                   </motion.span>
 
-                  <span className="ml-4 flex p-2  items-center justify-center rounded-full bg-[#0D76BC]">
+                  <span className="ml-4 flex p-2 items-center justify-center rounded-full bg-[#0D76BC]">
                     <FiChevronDown
                       className={`text-xl text-white transition-transform duration-300 ${
                         isOpen ? "rotate-180" : ""
@@ -131,7 +134,6 @@ const Faqs = () => {
             );
           })}
         </div>
-
       </div>
     </motion.section>
   );

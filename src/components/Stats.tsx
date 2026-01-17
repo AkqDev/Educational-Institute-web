@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, type Variants, useInView } from "framer-motion";
+import { FaLightbulb, FaHeadset, FaSmile, FaAward } from "react-icons/fa";
 
 type Stat = {
   value: number;
@@ -31,6 +32,21 @@ const containerVariants: Variants = {
 const itemVariants: Variants = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: { opacity: 1, scale: 1 },
+};
+
+// Features Section Variants
+const featureContainerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const featureItemVariants: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  visible: { opacity: 1, y: 0, scale: 1 },
 };
 
 // ---------------- Counter Hook ----------------
@@ -91,35 +107,55 @@ const StatCard = ({
 // ---------------- Main Component ----------------
 const Stats = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const featuresRef = useRef(null);
+  const isStatsInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const isFeaturesInView = useInView(featuresRef, { margin: "-150px" });
+
+  const features = [
+    { icon: <FaLightbulb />, label: "Continuous Innovation" },
+    { icon: <FaHeadset />, label: "Dedicated Support" },
+    { icon: <FaSmile />, label: "Positive Working Experiences" },
+    { icon: <FaAward />, label: "Commitment to Excellence" },
+  ];
 
   return (
-    <motion.section
-      ref={sectionRef}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      className="relative w-full py-24 px-4 overflow-hidden"
-    >
-      {/* Background Glow */}
-      <div className="absolute inset-0 -z-10">
-        <div
-          className="absolute left-1/2 top-1/2 h-[500px] w-[500px]
-          -translate-x-1/2 -translate-y-1/2 rounded-full"
-        />
-      </div>
-
-      {/* Stats */}
-      <div className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-6 md:gap-10">
+    <section className="relative w-full py-24 px-4 overflow-hidden">
+      {/* Stats Section */}
+      <motion.div
+        ref={sectionRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isStatsInView ? "visible" : "hidden"}
+        className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-6 md:gap-10"
+      >
         {stats.map((stat, index) => (
-          <StatCard
-            key={index}
-            stat={stat}
-            startCounting={isInView}
-          />
+          <StatCard key={index} stat={stat} startCounting={isStatsInView} />
         ))}
-      </div>
-    </motion.section>
+      </motion.div>
+
+      {/* Features Section */}
+      <motion.div
+        ref={featuresRef}
+        variants={featureContainerVariants}
+        initial="hidden"
+        animate={isFeaturesInView ? "visible" : "hidden"}
+        className="w-full h-auto flex justify-center items-center p-4 mt-16 md:mt-24"
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-2 w-full max-w-[1000px]">
+          {features.map((feature, idx) => (
+           <motion.div
+  key={idx}
+  variants={featureItemVariants}
+  className="flex flex-row items-center gap-2 bg-[#2A2D2D] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform"
+>
+  <div className="text-2xl text-[#0D76BC]">{feature.icon}</div>
+  <p className="text-sm md:text-base p-2">{feature.label}</p>
+</motion.div>
+
+          ))}
+        </div>
+      </motion.div>
+    </section>
   );
 };
 
