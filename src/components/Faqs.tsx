@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { motion} from "framer-motion";
 import type { Variants } from "framer-motion"; 
-    
+
 const faqs = [
   {
     question: "What is SEO and why is it important?",
@@ -103,7 +103,7 @@ const Faqs = () => {
                     {faq.question}
                   </motion.span>
 
-                  <span className="ml-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#0D76BC]">
+                  <span className="ml-4 flex p-2  items-center justify-center rounded-full bg-[#0D76BC]">
                     <FiChevronDown
                       className={`text-xl text-white transition-transform duration-300 ${
                         isOpen ? "rotate-180" : ""
