@@ -73,9 +73,9 @@ const StatCard = ({
   return (
     <motion.div
       variants={itemVariants}
-      className="relative flex h-40 w-40 md:h-48 md:w-48 items-center justify-center rounded-full
+      className="relative flex h-45 w-45 md:h-55 md:w-55 items-center justify-center rounded-full
       bg-white/5 backdrop-blur-xl border border-white/10
-      shadow-[0_0_80px_rgba(13,118,188,0.25)]"
+      shadow-[0_0_70px_rgba(13,118,188,0.25)]"
     >
       <div className="text-center">
         <p className="text-3xl md:text-4xl font-bold text-white">
@@ -105,8 +105,7 @@ const Stats = () => {
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute left-1/2 top-1/2 h-[500px] w-[500px]
-          -translate-x-1/2 -translate-y-1/2 rounded-full
-          bg-[#0D76BC]/20 blur-[180px]"
+          -translate-x-1/2 -translate-y-1/2 rounded-full"
         />
       </div>
 
