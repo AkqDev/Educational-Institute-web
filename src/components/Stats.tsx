@@ -57,7 +57,7 @@ const useCounter = (end: number, start: boolean) => {
     if (!start) return;
 
     let current = 0;
-    const duration = 1600;
+    const duration = 2400;
     const step = Math.max(1, Math.floor(end / (duration / 16)));
 
     const interval = setInterval(() => {
@@ -68,7 +68,7 @@ const useCounter = (end: number, start: boolean) => {
       } else {
         setCount(current);
       }
-    }, 16);
+    }, 24);
 
     return () => clearInterval(interval);
   }, [end, start]);
@@ -126,7 +126,7 @@ const Stats = () => {
         variants={containerVariants}
         initial="hidden"
         animate={isStatsInView ? "visible" : "hidden"}
-        className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-6 md:gap-10"
+        className="mx-auto max-w-7xl flex flex-wrap items-center justify-center gap-4"
       >
         {stats.map((stat, index) => (
           <StatCard key={index} stat={stat} startCounting={isStatsInView} />

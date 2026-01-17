@@ -195,7 +195,7 @@ const Hero: React.FC = () => {
           </motion.div>
 
           {/* RIGHT SIDE – SWIPER CAROUSEL */}
-          <motion.div variants={carouselVariants} className="w-full lg:w-[360px] relative z-20">
+          <motion.div variants={carouselVariants} className="w-full lg:w-[360px] relative z-20 mt-5">
             {/* Mobile - Horizontal Swiper */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
