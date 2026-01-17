@@ -74,8 +74,8 @@ const StatCard = ({
     <motion.div
       variants={itemVariants}
       className="relative flex h-45 w-45 md:h-55 md:w-55 items-center justify-center rounded-full
-      bg-white/5 backdrop-blur-xl border border-white/10
-      shadow-[0_0_70px_rgba(13,118,188,0.25)]"
+      bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_20px_rgba(13,118,188,0.25)]
+      md:shadow-[0_0_70px_rgba(13,118,188,0.25)]"
     >
       <div className="text-center">
         <p className="text-3xl md:text-4xl font-bold text-white">
