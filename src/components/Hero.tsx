@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-[90vh] md:h-[100vh] pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden bg-black"
+      className="w-full h-[80vh] md:h-[100vh] pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden bg-black"
     >
       {/* Aurora OGL Background */}
       <AuroraBackground
