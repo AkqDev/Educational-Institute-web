@@ -90,8 +90,7 @@ const Navbar = () => {
           </div>
 
           {/* MOBILE MENU ICON */}
-          <button
-            onClick={() => setIsOpen(true)}
+          <button onClick={() => setIsOpen(true)}
             className="md:hidden p-3 rounded-full bg-gray-100 shadow-md text-[#0D76BC]"
           >
             <FiMenu size={22} />
