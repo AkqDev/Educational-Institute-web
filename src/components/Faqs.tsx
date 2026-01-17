@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
-import { motion } from "framer-motion";
-
+import { motion} from "framer-motion";
+import type { Variants } from "framer-motion"; 
+    
 const faqs = [
   {
     question: "What is SEO and why is it important?",
@@ -25,20 +26,20 @@ const faqs = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.8,
-      ease: "easeOut",
+      ease: [0.16, 1, 0.3, 1], // ✅ TS-safe easing
       staggerChildren: 0.15,
     },
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
 };
@@ -88,16 +89,15 @@ const Faqs = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="rounded-2xl bg-[#161616] px-6 py-5 transition-all hover:bg-[#1b1b1b]"
+                className="rounded-2xl bg-[#161616] px-6 py-5 hover:bg-[#1b1b1b]"
               >
                 <button
                   className="flex w-full items-center justify-between text-left"
                   onClick={() => setActiveIndex(isOpen ? null : index)}
                 >
-                  {/* Question hover slide */}
                   <motion.span
                     whileHover={{ x: 6 }}
-                    transition={{ type: "spring", stiffness: 200 }}
+                    transition={{ type: "spring", stiffness: 220 }}
                     className="text-lg font-medium text-white"
                   >
                     {faq.question}
@@ -112,9 +112,8 @@ const Faqs = () => {
                   </span>
                 </button>
 
-                {/* Answer */}
                 <div
-                  className={`grid transition-all duration-300 ease-in-out ${
+                  className={`grid transition-all duration-300 ${
                     isOpen
                       ? "grid-rows-[1fr] opacity-100 mt-4"
                       : "grid-rows-[0fr] opacity-0"
@@ -122,7 +121,7 @@ const Faqs = () => {
                 >
                   <motion.p
                     whileHover={{ x: 6 }}
-                    transition={{ type: "spring", stiffness: 200 }}
+                    transition={{ type: "spring", stiffness: 220 }}
                     className="overflow-hidden text-sm text-gray-300 leading-relaxed"
                   >
                     {faq.answer}
