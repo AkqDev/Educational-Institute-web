@@ -2,30 +2,31 @@
 
 import vision from "../assets/vision.png";
 import mission from "../assets/mission.png";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, easeInOut, easeOut } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useRef } from "react";
 
 /* ------------------ Animation Variants ------------------ */
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    transition: { duration: 0.8, ease: easeOut }, // ✅ replaced string with Framer Motion easing
   },
 };
 
-const imageVariants = {
+const imageVariants: Variants = {
   hidden: { opacity: 0, scale: 0.85 },
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.7 },
+    transition: { duration: 0.7, ease: easeInOut }, // ✅ added easing function
   },
 };
 
 const About = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(sectionRef, {
     margin: "-120px",
     once: false,

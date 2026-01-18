@@ -1,12 +1,12 @@
 // components/ui/globe.tsx
 "use client";
-import React from "react";
+
 import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 
 interface GlobeProps {
-  data: any[];
-  globeConfig: any;
+  data: { lat: number; lng: number }[];
+  globeConfig?: Partial<ReturnType<typeof createGlobe>>;
 }
 
 export function World({ data, globeConfig }: GlobeProps) {
@@ -17,7 +17,11 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     let phi = 0;
     let width = 0;
-    const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth);
+
+    const onResize = () => {
+      if (canvasRef.current) width = canvasRef.current.offsetWidth;
+    };
+
     window.addEventListener("resize", onResize);
     onResize();
 
@@ -31,9 +35,9 @@ export function World({ data, globeConfig }: GlobeProps) {
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor:   [0.051, 0.463, 0.737],  // same blue for base
-markerColor: [0.051, 0.463, 0.737],  // blue markers
-glowColor:   [0.051, 0.463, 0.737],  // blue glow instead of white
+      baseColor: [0.051, 0.463, 0.737],
+      markerColor: [0.051, 0.463, 0.737],
+      glowColor: [0.051, 0.463, 0.737],
       markers: data.map((point) => ({
         location: [point.lat, point.lng],
         size: 0.1,
@@ -44,14 +48,20 @@ glowColor:   [0.051, 0.463, 0.737],  // blue glow instead of white
         state.width = width * 2;
         state.height = width * 2;
       },
+      ...globeConfig, // allow overriding defaults
     });
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"));
+    // fade in canvas
+    const timeout = setTimeout(() => {
+      if (canvasRef.current) canvasRef.current.style.opacity = "1";
+    }, 0);
+
     return () => {
+      clearTimeout(timeout);
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
-  }, [data]);
+  }, [data, globeConfig]);
 
   return (
     <div style={{ width: "100%", height: "100%", position: "relative" }}>

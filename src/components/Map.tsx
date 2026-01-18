@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
 
@@ -9,16 +9,14 @@ const World = dynamic(
   () => import("../components/ui/globe").then((m) => m.World),
   {
     ssr: false,
-    loading: () => (
-      <div className="w-full h-full  animate-pulse rounded-2xl" />
-    ),
+    loading: () => <div className="w-full h-full animate-pulse rounded-2xl" />,
   }
 );
 
 /* ------------------ Component ------------------ */
 const Map = () => {
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
+  const leftRef = useRef<HTMLDivElement | null>(null);
+  const rightRef = useRef<HTMLDivElement | null>(null);
 
   const leftInView = useInView(leftRef, { once: false, margin: "-120px" });
   const rightInView = useInView(rightRef, { once: false, margin: "-120px" });
@@ -68,7 +66,6 @@ const Map = () => {
   return (
     <section className="w-full py-16 md:py-18 bg-[#000]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-
         <div className="flex flex-col lg:flex-row items-center gap-12">
 
           {/* ------------------ LEFT CONTENT ------------------ */}
@@ -82,7 +79,6 @@ const Map = () => {
             <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
               Global Learning Network
             </h1>
-
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mt-2 text-center md:text-left">
               We operate from a single official branch while serving students
               internationally through online education, global mentors, and
@@ -98,7 +94,7 @@ const Map = () => {
             transition={{ duration: 0.6 }}
             className="lg:w-1/2 w-full"
           >
-            <div className=" w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
               <World data={arcs} globeConfig={globeConfig} />
             </div>
           </motion.div>

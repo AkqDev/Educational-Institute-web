@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
 import { FaLightbulb, FaHeadset, FaSmile, FaAward } from "react-icons/fa";
 
@@ -126,11 +128,7 @@ const Stats = () => {
         className="mx-auto max-w-7xl flex flex-wrap flex-col md:flex-row items-center justify-center gap-4"
       >
         {stats.map((stat, index) => (
-          <StatCard
-            key={index}
-            stat={stat}
-            startCounting={startCounting}
-          />
+          <StatCard key={index} stat={stat} startCounting={startCounting} />
         ))}
       </motion.div>
 
@@ -149,12 +147,8 @@ const Stats = () => {
               variants={featureItemVariants}
               className="flex flex-row items-center gap-2 bg-[#2A2D2D] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform"
             >
-              <div className="text-2xl text-[#0D76BC]">
-                {feature.icon}
-              </div>
-              <p className="text-sm md:text-base p-2">
-                {feature.label}
-              </p>
+              <div className="text-2xl text-[#0D76BC]">{feature.icon}</div>
+              <p className="text-sm md:text-base p-2">{feature.label}</p>
             </motion.div>
           ))}
         </div>
