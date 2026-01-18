@@ -39,8 +39,8 @@ const Footer: React.FC = () => {
     },
     {
       icon: <FiMapPin size={18} />,
-      text: "123 Main Street Anytown, USA, 2141",
-      link: "https://www.google.com/maps?q=123+Main+Street+Anytown+USA+2141",
+      text: "Range Road | Rawalpindi | Pakistan",
+      link: "https://www.google.com/maps/place/H2X8%2BGMH,+Shalley+Valley,+Rawalpindi,+46000,+Pakistan/@33.5988125,73.0167344,17z/data=!3m1!4b1!4m5!3m4!1s0x38df940d9ccae5af:0x89d79a1b041f32e1!8m2!3d33.5988125!4d73.0167344?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoASAFQAw%3D%3D",
     },
   ];
 
