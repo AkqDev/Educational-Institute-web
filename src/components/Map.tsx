@@ -57,7 +57,7 @@ const Map = () => {
             <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
               Global Learning Network
             </h1>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mt-2 text-center md:text-left">
+            <p className="text-lg text-gray-200 max-w-xl mt-2 text-center md:text-left">
               We operate from a single official branch while serving students
               internationally through online education, global mentors, and
               digital collaboration.
