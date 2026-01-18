@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import About from '../components/About'
 import Map from '../components/Map'
 import Faqs from '../components/Faqs'
 import Stats from '../components/Stats'
@@ -8,6 +9,7 @@ const Home = () => {
   return (
     <div>
       <Hero/>
+      <About/>
       <Map/>
       <Stats/>
       <Testimonials/>

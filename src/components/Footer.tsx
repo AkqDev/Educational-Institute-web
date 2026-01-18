@@ -116,6 +116,7 @@ const Footer: React.FC = () => {
           className="md:w-1/3 flex justify-end"
         >
           <div className="space-y-4 w-full md:max-w-sm">
+            <h1 className="font-bold text-lg mb-3 md:hidden">Contact Us</h1>
             {contactLinks.map((item, i) => (
               <motion.a
                 key={i}
@@ -123,7 +124,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03 }}
-                className="flex items-center gap-3 text-sm font-medium bg-[#222222] p-6 rounded-2xl w-full md:w-auto justify-center hover:opacity-80 transition"
+                className="flex items-center gap-3 text-sm font-medium md:bg-[#222222] md:p-6 rounded-2xl w-full md:w-auto md:justify-center hover:opacity-80 transition"
               >
                 {item.icon}
                 {item.text}
@@ -170,7 +171,7 @@ const Footer: React.FC = () => {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1 }}
-        className="fixed bottom-5 right-5 z-50 bg-[#0D76BC] p-4 rounded-full shadow-lg md:hidden"
+        className="fixed bottom-5 right-10 z-50 bg-[#0D76BC] p-4 rounded-full shadow-lg md:hidden"
       >
         <FaWhatsapp size={18} className="text-white" />
       </motion.a>

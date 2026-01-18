@@ -43,7 +43,7 @@ const Testimonials = () => {
     <div className="py-20 px-4 sm:px-6 lg:px-8 bg-[#000]">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold tracking-tight text-[#0D76BC]">
-          What Our Customers Say
+          What Our Students Say
         </h2>
         <p className="mt-4 text-xl text-gray-100 max-w-3xl mx-auto">
           Hear from industry leaders who have transformed their businesses with our platform.

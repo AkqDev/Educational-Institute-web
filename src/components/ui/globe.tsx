@@ -31,9 +31,9 @@ export function World({ data, globeConfig }: GlobeProps) {
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.1, 0.8, 1],
-      glowColor: [1, 1, 1],
+      baseColor:   [0.051, 0.463, 0.737],  // same blue for base
+markerColor: [0.051, 0.463, 0.737],  // blue markers
+glowColor:   [0.051, 0.463, 0.737],  // blue glow instead of white
       markers: data.map((point) => ({
         location: [point.lat, point.lng],
         size: 0.1,

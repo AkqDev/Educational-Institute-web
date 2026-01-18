@@ -10,7 +10,7 @@ const World = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full bg-gray-200 dark:bg-gray-800 animate-pulse rounded-2xl" />
+      <div className="w-full h-full  animate-pulse rounded-2xl" />
     ),
   }
 );
@@ -62,7 +62,7 @@ const Map = () => {
     endLat: loc.lat,
     endLng: loc.lng,
     arcAlt: 0.15,
-    color: ["#06b6d4", "#3b82f6", "#6366f1"][i % 3],
+    color: ["#06b6d4", "#0D76BC", "#0D76BC"][i % 3],
   }));
 
   return (
@@ -98,7 +98,7 @@ const Map = () => {
             transition={{ duration: 0.6 }}
             className="lg:w-1/2 w-full"
           >
-            <div className="relative w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className=" w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
               <World data={arcs} globeConfig={globeConfig} />
             </div>
           </motion.div>
