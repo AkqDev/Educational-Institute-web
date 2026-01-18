@@ -4,9 +4,35 @@
 import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 
+interface Marker {
+  location: [number, number];
+  size?: number;
+}
+
 interface GlobeProps {
   data: { lat: number; lng: number }[];
-  globeConfig?: Partial<ReturnType<typeof createGlobe>>;
+  globeConfig?: {
+    pointSize?: number;
+    globeColor?: string;
+    showAtmosphere?: boolean;
+    atmosphereColor?: string;
+    atmosphereAltitude?: number;
+    emissive?: string;
+    emissiveIntensity?: number;
+    shininess?: number;
+    polygonColor?: string;
+    ambientLight?: string;
+    directionalLeftLight?: string;
+    directionalTopLight?: string;
+    pointLight?: string;
+    arcTime?: number;
+    arcLength?: number;
+    rings?: number;
+    maxRings?: number;
+    initialPosition?: { lat: number; lng: number };
+    autoRotate?: boolean;
+    autoRotateSpeed?: number;
+  };
 }
 
 export function World({ data, globeConfig }: GlobeProps) {
@@ -25,6 +51,12 @@ export function World({ data, globeConfig }: GlobeProps) {
     window.addEventListener("resize", onResize);
     onResize();
 
+    // Convert your data to markers format expected by cobe
+    const markers: Marker[] = data.map((point) => ({
+      location: [point.lat, point.lng],
+      size: globeConfig?.pointSize || 0.1,
+    }));
+
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
       width: width * 2,
@@ -35,20 +67,16 @@ export function World({ data, globeConfig }: GlobeProps) {
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.051, 0.463, 0.737],
+      baseColor: [0.051, 0.463, 0.737], // #0D76BC in RGB
       markerColor: [0.051, 0.463, 0.737],
       glowColor: [0.051, 0.463, 0.737],
-      markers: data.map((point) => ({
-        location: [point.lat, point.lng],
-        size: 0.1,
-      })),
-      onRender: (state) => {
+      markers,
+      onRender: (state: Record<string, any>) => { // Fixed the type here
         state.phi = phi;
-        phi += 0.005;
+        phi += globeConfig?.autoRotateSpeed || 0.005;
         state.width = width * 2;
         state.height = width * 2;
       },
-      ...globeConfig, // allow overriding defaults
     });
 
     // fade in canvas

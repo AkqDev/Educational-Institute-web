@@ -23,45 +23,23 @@ const Map = () => {
 
   /* ------------------ Globe Config ------------------ */
   const globeConfig = {
-    pointSize: 4,
-    globeColor: "#062056",
-    showAtmosphere: true,
-    atmosphereColor: "#FFFFFF",
-    atmosphereAltitude: 0.1,
-    emissive: "#062056",
-    emissiveIntensity: 0.1,
-    shininess: 0.9,
-    polygonColor: "rgba(255,255,255,0.7)",
-    ambientLight: "#38bdf8",
-    directionalLeftLight: "#ffffff",
-    directionalTopLight: "#ffffff",
-    pointLight: "#ffffff",
-    arcTime: 1000,
-    arcLength: 0.9,
-    rings: 1,
-    maxRings: 3,
-    initialPosition: { lat: 24.8607, lng: 67.0011 },
-    autoRotate: true,
-    autoRotateSpeed: 0.3,
+    pointSize: 0.1, // cobe uses size between 0-1
+    autoRotateSpeed: 0.005,
   };
 
   const globalReach = [
-    { lat: 40.7128, lng: -74.006 },
-    { lat: 51.5074, lng: -0.1278 },
-    { lat: 48.8566, lng: 2.3522 },
-    { lat: 35.6762, lng: 139.6503 },
-    { lat: 1.3521, lng: 103.8198 },
+    { lat: 40.7128, lng: -74.006 }, // New York
+    { lat: 51.5074, lng: -0.1278 }, // London
+    { lat: 48.8566, lng: 2.3522 }, // Paris
+    { lat: 35.6762, lng: 139.6503 }, // Tokyo
+    { lat: 1.3521, lng: 103.8198 }, // Singapore
   ];
 
-  const arcs = globalReach.map((loc, i) => ({
-    order: i + 1,
-    startLat: globeConfig.initialPosition.lat,
-    startLng: globeConfig.initialPosition.lng,
-    endLat: loc.lat,
-    endLng: loc.lng,
-    arcAlt: 0.15,
-    color: ["#06b6d4", "#0D76BC", "#0D76BC"][i % 3],
-  }));
+  // Add Karachi as the base location too
+  const allLocations = [
+    { lat: 24.8607, lng: 67.0011 }, // Karachi (base)
+    ...globalReach
+  ];
 
   return (
     <section className="w-full py-16 md:py-18 bg-[#000]">
@@ -95,7 +73,7 @@ const Map = () => {
             className="lg:w-1/2 w-full"
           >
             <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
-              <World data={arcs} globeConfig={globeConfig} />
+              <World data={allLocations} globeConfig={globeConfig} />
             </div>
           </motion.div>
 
