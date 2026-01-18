@@ -3,34 +3,12 @@
 
 import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
-
-interface Marker {
-  location: [number, number];
-  size?: number;
-}
+import type { Marker as CobeMarker } from "cobe";
 
 interface GlobeProps {
   data: { lat: number; lng: number }[];
   globeConfig?: {
     pointSize?: number;
-    globeColor?: string;
-    showAtmosphere?: boolean;
-    atmosphereColor?: string;
-    atmosphereAltitude?: number;
-    emissive?: string;
-    emissiveIntensity?: number;
-    shininess?: number;
-    polygonColor?: string;
-    ambientLight?: string;
-    directionalLeftLight?: string;
-    directionalTopLight?: string;
-    pointLight?: string;
-    arcTime?: number;
-    arcLength?: number;
-    rings?: number;
-    maxRings?: number;
-    initialPosition?: { lat: number; lng: number };
-    autoRotate?: boolean;
     autoRotateSpeed?: number;
   };
 }
@@ -52,7 +30,7 @@ export function World({ data, globeConfig }: GlobeProps) {
     onResize();
 
     // Convert your data to markers format expected by cobe
-    const markers: Marker[] = data.map((point) => ({
+    const markers: CobeMarker[] = data.map((point) => ({
       location: [point.lat, point.lng],
       size: globeConfig?.pointSize || 0.1,
     }));
@@ -71,7 +49,7 @@ export function World({ data, globeConfig }: GlobeProps) {
       markerColor: [0.051, 0.463, 0.737],
       glowColor: [0.051, 0.463, 0.737],
       markers,
-      onRender: (state: Record<string, any>) => { // Fixed the type here
+      onRender: (state: Record<string, any>) => {
         state.phi = phi;
         phi += globeConfig?.autoRotateSpeed || 0.005;
         state.width = width * 2;
