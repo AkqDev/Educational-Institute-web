@@ -134,7 +134,6 @@ const Footer: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* BOTTOM FOOTER */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
