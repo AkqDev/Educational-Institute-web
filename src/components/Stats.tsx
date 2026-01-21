@@ -130,7 +130,7 @@ const Stats = () => {
           <StatCard key={index} stat={stat} startCounting={startCounting} />
         ))}
       </motion.div>
-
+      
       {/* Features Section */}
       <motion.div
         variants={featureContainerVariants}

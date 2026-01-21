@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from 'react';
 import navtc from "../assets/navtc.png";
 import youth from "../assets/youth.png";
@@ -73,6 +75,15 @@ const Hero: React.FC = () => {
     }
   };
 
+  // ---------------- WhatsApp Click Handler ----------------
+  const handleWhatsApp = () => {
+    const phoneNumber = "923701393075";
+    const message = encodeURIComponent(
+      "Hello! I am interested in enrolling in your IT courses. Please provide me more details."
+    );
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -133,7 +144,6 @@ const Hero: React.FC = () => {
               Class IT Professionals
             </motion.p>
 
-            {/* ➕ Added Supporting Text */}
             <motion.p
               variants={itemVariants}
               className="mt-4 text-base lg:text-[16px] text-gray-300 leading-relaxed"
@@ -149,7 +159,9 @@ const Hero: React.FC = () => {
               variants={itemVariants}
               className="flex flex-col md:flex-row gap-6 items-center justify-center mt-10"
             >
+              {/* WhatsApp Enroll Button */}
               <motion.button
+                onClick={handleWhatsApp}
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
