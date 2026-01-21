@@ -40,7 +40,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 bg-[#000]">
+    <div className="py-15 px-4 sm:px-6 lg:px-8 bg-[#000]">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold tracking-tight text-[#0D76BC]">
           What Our Students Say
