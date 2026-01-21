@@ -4,38 +4,38 @@ const Testimonials = () => {
   const testimonials = [
     {
       quote:
-        "The attention to detail and innovative features have completely transformed our workflow. This is exactly what we've been looking for.",
-      name: "Sarah Chen",
-      designation: "Product Manager at TechFlow",
-      src: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "The courses transformed my skills! I now feel confident applying for international IT roles.",
+      name: "Ali Khan",
+      designation: "Full Stack Developer",
+      src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=3600&auto=format&fit=crop",
     },
     {
       quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "I loved the hands-on projects and mentorship. The real-world approach made learning so much easier.",
+      name: "Sara Ahmed",
+      designation: "Software Engineer Intern",
+      src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=3600&auto=format&fit=crop",
     },
     {
       quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "The instructors are amazing! I improved my coding skills faster than I expected.",
+      name: "Hassan Qureshi",
+      designation: "Junior Frontend Developer",
+      src: "https://images.unsplash.com/photo-1603415526960-f7e0328f1bbd?q=80&w=3600&auto=format&fit=crop",
     },
     {
       quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
-      designation: "Engineering Lead at DataPro",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "The learning experience was smooth and interactive. I now work confidently on real projects.",
+      name: "Ayesha Malik",
+      designation: "UI/UX Designer",
+      src: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=3600&auto=format&fit=crop",
     },
     {
       quote:
-        "The scalability and performance have been game-changing for our organization. Highly recommend to any growing business.",
-      name: "Lisa Thompson",
-      designation: "VP of Technology at FutureNet",
-      src: "https://images.unsplash.com/photo-1624561172888-ac93c696e10c?q=80&w=2592&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "Thanks to this platform, I landed my first remote developer job! Highly recommended for students.",
+      name: "Omar Farooq",
+      designation: "Remote Backend Developer",
+      src: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=3600&auto=format&fit=crop",
     },
   ];
 
@@ -46,14 +46,16 @@ const Testimonials = () => {
           What Our Students Say
         </h2>
         <p className="mt-4 text-xl text-gray-100 max-w-3xl mx-auto">
-          Hear from industry leaders who have transformed their businesses with our platform.
+          Hear from our students who have transformed their careers and skills through our training.
         </p>
       </div>
       
       <AnimatedTestimonials 
         testimonials={testimonials}
         autoplay={true}
-        autoplayInterval={5000}
+        autoplayInterval={3000} // faster autoplay for smoother mobile experience
+        slidesPerView={{ base: 1, md: 2, lg: 3 }} // adapt slides for mobile, tablet, desktop
+        loop={true} // make it continuous
       />
     </div>
   );
