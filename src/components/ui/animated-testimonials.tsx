@@ -24,6 +24,7 @@ export const AnimatedTestimonials = ({
   className?: string;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const next = () => {
     setCurrentIndex((prevIndex) => 
@@ -38,14 +39,33 @@ export const AnimatedTestimonials = ({
   };
 
   useEffect(() => {
-    if (!autoplay) return;
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!autoplay || !isLoaded) return;
 
     const interval = setInterval(() => {
       next();
     }, autoplayInterval);
 
     return () => clearInterval(interval);
-  }, [autoplay, autoplayInterval]);
+  }, [autoplay, autoplayInterval, isLoaded]);
+
+  // Optimize image URLs for mobile
+  const getOptimizedImageUrl = (url: string) => {
+    // This is a simple optimization - in production, you should use a proper image CDN
+    // or image optimization service
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    
+    if (isMobile) {
+      // For Unsplash images, you can add parameters to optimize size
+      return url.replace(/w=\d+/, 'w=800').replace(/h=\d+/, 'h=600');
+    }
+    
+    // For desktop, still optimize but keep larger
+    return url.replace(/w=\d+/, 'w=1200').replace(/h=\d+/, 'h=800');
+  };
 
   return (
     <div className={cn("relative w-full max-w-6xl mx-auto", className)}>
@@ -53,56 +73,58 @@ export const AnimatedTestimonials = ({
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col lg:flex-row items-start gap-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }} // Reduced duration for better performance
+            className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12"
           >
             {/* Left side - Image with quote icon */}
             <div className="w-full lg:w-2/5">
               <div className="relative">
-                <div className="absolute -top-6 -left-6 z-10">
-                  <Quote className="h-12 w-12 text-[#0D76BC] opacity-50" />
+                <div className="absolute -top-4 -left-4 z-10">
+                  <Quote className="h-8 w-8 lg:h-12 lg:w-12 text-[#0D76BC] opacity-50" />
                 </div>
-                <div className="relative h-64 lg:h-80 w-full overflow-hidden rounded-2xl shadow-2xl">
+                <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 w-full overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl">
                   <img
-                    src={testimonials[currentIndex].src}
+                    src={getOptimizedImageUrl(testimonials[currentIndex].src)}
                     alt={testimonials[currentIndex].name}
                     className="object-cover w-full h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
             </div>
 
             {/* Right side - Content */}
-            <div className="w-full lg:w-3/5 flex flex-col justify-between min-h-80">
+            <div className="w-full lg:w-3/5 flex flex-col justify-between min-h-64 lg:min-h-80">
               <div>
-                <blockquote className="text-2xl lg:text-3xl text-gray-200 mb-8 leading-relaxed font-light">
+                <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-200 mb-6 lg:mb-8 leading-relaxed font-light">
                   "{testimonials[currentIndex].quote}"
                 </blockquote>
                 
-                <div className="border-l-4 border-blue-500 pl-6 py-2">
-                  <h3 className="text-xl font-bold text-[#0D76BC]">
+                <div className="border-l-4 border-blue-500 pl-4 lg:pl-6 py-1 lg:py-2">
+                  <h3 className="text-lg lg:text-xl font-bold text-[#0D76BC]">
                     {testimonials[currentIndex].name}
                   </h3>
-                  <p className="text-lg text-white">
+                  <p className="text-base lg:text-lg text-white">
                     {testimonials[currentIndex].designation}
                   </p>
                 </div>
               </div>
 
               {/* Navigation */}
-              <div className="flex items-center justify-between mt-8">
-                <div className="flex space-x-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6 lg:mt-8">
+                <div className="flex space-x-2 order-2 sm:order-1">
                   {testimonials.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentIndex(index)}
                       className={cn(
-                        "h-2 rounded-full transition-all",
+                        "h-2 rounded-full transition-all duration-200",
                         index === currentIndex 
-                          ? "bg-blue-600 w-8" 
+                          ? "bg-blue-600 w-6 sm:w-8" 
                           : "bg-slate-300 w-2 hover:bg-slate-400"
                       )}
                       aria-label={`Go to testimonial ${index + 1}`}
@@ -110,21 +132,21 @@ export const AnimatedTestimonials = ({
                   ))}
                 </div>
                 
-                <div className="flex space-x-3">
+                <div className="flex space-x-3 order-1 sm:order-2">
                   <button
                     onClick={previous}
-                    className="p-3 rounded-full bg-white shadow-sm"
+                    className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
                     aria-label="Previous testimonial"
                   >
-                    <ChevronLeft className="h-5 w-5 text-black font-bold" />
+                    <ChevronLeft className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
                   </button>
                   
                   <button
                     onClick={next}
-                    className="p-3 rounded-full bg-white shadow-sm"
+                    className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
                     aria-label="Next testimonial"
                   >
-                    <ChevronRight className="h-5 w-5 text-black font-bold" />
+                    <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
                   </button>
                 </div>
               </div>
