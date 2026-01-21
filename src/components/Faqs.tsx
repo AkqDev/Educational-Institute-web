@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView,type Variants } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
 const faqs = [
@@ -25,13 +25,17 @@ const faqs = [
   },
 ];
 
-// Framer Motion container variants
-const containerVariants = {
+// Framer Motion container variants with proper typing
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeInOut", staggerChildren: 0.1 },
+    transition: { 
+      duration: 0.8, 
+      ease: "easeInOut" as const, // Type assertion for valid easing
+      staggerChildren: 0.1 
+    },
   },
 };
 
@@ -83,9 +87,12 @@ const Faqs = () => {
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
             return (
-              <div
+              <motion.div
                 key={index}
                 className="rounded-2xl bg-[#161616] px-6 py-5 hover:bg-[#1b1b1b] transition-colors duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
               >
                 <button
                   className="flex w-full items-center justify-between text-left"
@@ -115,7 +122,7 @@ const Faqs = () => {
                     {faq.answer}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
