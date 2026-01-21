@@ -34,27 +34,15 @@ const Map = () => {
   /* ------------------ Globe Config ------------------ */
   const globeConfig = {
     pointSize: 0.1,
-    // 🔹 Disable rotation on mobile to prevent hanging
     autoRotateSpeed: isMobile ? 0 : 0.005,
-    // 🔹 Reduce GPU load
     devicePixelRatio: isMobile ? 1 : 2,
   };
 
-  const globalReach = [
-    { lat: 40.7128, lng: -74.006 },
-    { lat: 51.5074, lng: -0.1278 },
-    { lat: 48.8566, lng: 2.3522 },
-    { lat: 35.6762, lng: 139.6503 },
-    { lat: 1.3521, lng: 103.8198 },
-  ];
-
-  const allLocations = [
-    { lat: 24.8607, lng: 67.0011 },
-    ...globalReach,
-  ];
+  // 🔹 Only Pakistan
+  const allLocations = [{ lat: 24.8607, lng: 67.0011 }];
 
   return (
-    <section className="w-full py-16 md:py-18 bg-[#000]">
+    <section className="w-full py-16 md:py-24 bg-[#000]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12">
 

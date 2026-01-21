@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { FaLightbulb, FaHeadset, FaSmile, FaAward } from "react-icons/fa";
+import { FaLightbulb, FaSmile, FaAward } from "react-icons/fa";
 
 type Stat = {
   value: number;
@@ -111,7 +111,6 @@ const Stats = () => {
 
   const features = [
     { icon: <FaLightbulb />, label: "Continuous Innovation" },
-    { icon: <FaHeadset />, label: "Dedicated Support" },
     { icon: <FaSmile />, label: "Positive Working Experiences" },
     { icon: <FaAward />, label: "Commitment to Excellence" },
   ];
@@ -138,9 +137,9 @@ const Stats = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-150px" }}
-        className="w-full h-auto flex justify-center items-center p-4 mt-16 md:mt-24"
+        className="w-full h-auto md:flex justify-center items-center p-4 mt-16 md:mt-24 hidden"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 justify-center items-center gap-2 w-full max-w-[1000px]">
+        <div className="grid md:grid-cols-3 justify-center items-center md:gap-2 w-full max-w-6xl">
           {features.map((feature, idx) => (
             <motion.div
               key={idx}
