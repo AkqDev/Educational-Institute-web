@@ -18,7 +18,7 @@ const Navbar = () => {
 
           {/* LOGO (GO TO HOME) */}
           <Link to="/">
-            <img src={logo} alt="logo" className="w-22 h-22 cursor-pointer" />
+            <img src={logo} alt="logo" className="w-28 h-auto cursor-pointer" />
           </Link>
 
           {/* DESKTOP MENU */}
