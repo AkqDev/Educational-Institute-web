@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
 
@@ -9,7 +9,9 @@ const World = dynamic(
   () => import("../components/ui/globe").then((m) => m.World),
   {
     ssr: false,
-    loading: () => <div className="w-full h-full animate-pulse rounded-2xl" />,
+    loading: () => (
+      <div className="w-full h-full animate-pulse rounded-2xl bg-neutral-900" />
+    ),
   }
 );
 
@@ -18,27 +20,37 @@ const Map = () => {
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
 
-  const leftInView = useInView(leftRef, { once: false, margin: "-120px" });
-  const rightInView = useInView(rightRef, { once: false, margin: "-120px" });
+  // 🔹 Run animation ONLY once (important for mobile)
+  const leftInView = useInView(leftRef, { once: true, margin: "-120px" });
+  const rightInView = useInView(rightRef, { once: true, margin: "-120px" });
+
+  // 🔹 Detect mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
 
   /* ------------------ Globe Config ------------------ */
   const globeConfig = {
-    pointSize: 0.1, // cobe uses size between 0-1
-    autoRotateSpeed: 0.005,
+    pointSize: 0.1,
+    // 🔹 Disable rotation on mobile to prevent hanging
+    autoRotateSpeed: isMobile ? 0 : 0.005,
+    // 🔹 Reduce GPU load
+    devicePixelRatio: isMobile ? 1 : 2,
   };
 
   const globalReach = [
-    { lat: 40.7128, lng: -74.006 }, // New York
-    { lat: 51.5074, lng: -0.1278 }, // London
-    { lat: 48.8566, lng: 2.3522 }, // Paris
-    { lat: 35.6762, lng: 139.6503 }, // Tokyo
-    { lat: 1.3521, lng: 103.8198 }, // Singapore
+    { lat: 40.7128, lng: -74.006 },
+    { lat: 51.5074, lng: -0.1278 },
+    { lat: 48.8566, lng: 2.3522 },
+    { lat: 35.6762, lng: 139.6503 },
+    { lat: 1.3521, lng: 103.8198 },
   ];
 
-  // Add Karachi as the base location too
   const allLocations = [
-    { lat: 24.8607, lng: 67.0011 }, // Karachi (base)
-    ...globalReach
+    { lat: 24.8607, lng: 67.0011 },
+    ...globalReach,
   ];
 
   return (
@@ -50,28 +62,36 @@ const Map = () => {
           <motion.div
             ref={leftRef}
             initial={{ opacity: 0, x: -60 }}
-            animate={leftInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
+            animate={leftInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="lg:w-1/2 space-y-8 lg:pl-4 lg:pr-10"
           >
             <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
-  Global Learning Network
-</h1>
-<p className="text-lg text-gray-200 max-w-2xl mt-2 text-center md:text-left">
-  We operate from a single official branch while serving students internationally through online education, global mentors, and digital collaboration. Our platform connects learners across 50+ countries with industry experts in a borderless educational ecosystem. We deliver world-class education through virtual classrooms and real-time collaboration tools directly to your doorstep. Our curriculum is constantly updated with global industry trends, ensuring students remain competitive internationally.
-</p>
+              Global Learning Network
+            </h1>
+
+            <p className="text-lg text-gray-200 max-w-2xl mt-2 text-center md:text-left">
+              We operate from a single official branch while serving students
+              internationally through online education, global mentors, and
+              digital collaboration. Our platform connects learners across
+              50+ countries with industry experts in a borderless educational
+              ecosystem.
+            </p>
           </motion.div>
 
           {/* ------------------ GLOBE ------------------ */}
           <motion.div
             ref={rightRef}
             initial={{ opacity: 0, x: 60 }}
-            animate={rightInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
+            animate={rightInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
             className="lg:w-1/2 w-full"
           >
             <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
-              <World data={allLocations} globeConfig={globeConfig} />
+              {/* 🔹 Render globe ONLY when visible */}
+              {rightInView && (
+                <World data={allLocations} globeConfig={globeConfig} />
+              )}
             </div>
           </motion.div>
 
