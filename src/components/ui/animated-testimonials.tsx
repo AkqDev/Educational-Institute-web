@@ -113,44 +113,47 @@ export const AnimatedTestimonials = ({
                   </p>
                 </div>
               </div>
-
               {/* Navigation */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mt-6 lg:mt-8">
-                <div className="flex space-x-2 order-2 sm:order-1">
-                  {testimonials.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={cn(
-                        "h-2 rounded-full transition-all duration-200",
-                        index === currentIndex 
-                          ? "bg-blue-600 w-6 sm:w-8" 
-                          : "bg-slate-300 w-2 hover:bg-slate-400"
-                      )}
-                      aria-label={`Go to testimonial ${index + 1}`}
-                    />
-                  ))}
-                </div>
-                
-                <div className="flex space-x-3 order-1 sm:order-2">
-                  <button
-                    onClick={previous}
-                    className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
-                  </button>
-                  
-                  <button
-                    onClick={next}
-                    className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
-                  </button>
-                </div>
+<div className="flex flex-row flex-wrap items-center justify-between gap-2 mt-6 lg:mt-8">
+  {/* Dots */}
+  <div className="flex space-x-2">
+    {testimonials.map((_, index) => (
+      <button
+        key={index}
+        onClick={() => setCurrentIndex(index)}
+        className={cn(
+          "h-2 rounded-full transition-all duration-200",
+          index === currentIndex
+            ? "bg-blue-600 w-6 sm:w-8"
+            : "bg-slate-300 w-2 hover:bg-slate-400"
+        )}
+        aria-label={`Go to testimonial ${index + 1}`}
+      />
+    ))}
+  </div>
+
+  {/* Prev/Next buttons */}
+  <div className="flex space-x-3">
+    <button
+      onClick={previous}
+      className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
+      aria-label="Previous testimonial"
+    >
+      <ChevronLeft className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
+    </button>
+
+    <button
+      onClick={next}
+      className="p-2 lg:p-3 rounded-full bg-white shadow-sm hover:bg-gray-100 active:scale-95 transition-transform duration-150"
+      aria-label="Next testimonial"
+    >
+      <ChevronRight className="h-4 w-4 lg:h-5 lg:w-5 text-black font-bold" />
+    </button>
+  </div>
+</div>
+
+
               </div>
-            </div>
           </motion.div>
         </AnimatePresence>
       </div>
