@@ -55,13 +55,11 @@ const Map = () => {
             className="lg:w-1/2 space-y-8 lg:pl-4 lg:pr-10"
           >
             <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
-              Global Learning Network
-            </h1>
-            <p className="text-lg text-gray-200 max-w-xl mt-2 text-center md:text-left">
-              We operate from a single official branch while serving students
-              internationally through online education, global mentors, and
-              digital collaboration.
-            </p>
+  Global Learning Network
+</h1>
+<p className="text-lg text-gray-200 max-w-2xl mt-2 text-center md:text-left">
+  We operate from a single official branch while serving students internationally through online education, global mentors, and digital collaboration. Our platform connects learners across 50+ countries with industry experts in a borderless educational ecosystem. We deliver world-class education through virtual classrooms and real-time collaboration tools directly to your doorstep. Our curriculum is constantly updated with global industry trends, ensuring students remain competitive internationally.
+</p>
           </motion.div>
 
           {/* ------------------ GLOBE ------------------ */}

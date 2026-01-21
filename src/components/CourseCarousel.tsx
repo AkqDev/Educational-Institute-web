@@ -28,7 +28,7 @@ interface Course {
   image: string;
 }
 
-const WHATSAPP_NUMBER = "923001234567"; // 🔴 replace only this
+const WHATSAPP_NUMBER = "923701393075";
 
 const CourseCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
