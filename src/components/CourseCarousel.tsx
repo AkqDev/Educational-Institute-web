@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, type Variants } from "framer-motion";
-
 import {
-  FaChevronLeft,
-  FaChevronRight,
-  FaStar,
-  FaUsers,
-  FaClock,
-} from "react-icons/fa";
+  motion,
+  AnimatePresence,
+  useInView,
+  type Variants,
+} from "framer-motion";
+
+import { FaChevronLeft, FaChevronRight, FaClock } from "react-icons/fa";
 
 import web from "../assets/web.png";
 import marketing from "../assets/marketing.png";
@@ -22,8 +21,6 @@ interface Course {
   category: string;
   description: string;
   duration: string;
-  students: number;
-  rating: number;
   price?: string;
   image: string;
 }
@@ -38,13 +35,11 @@ const CourseCarousel = () => {
   const courses: Course[] = [
     {
       id: 1,
-      title: "Web Development Bootcamp",
+      title: "Web Development",
       category: "Development",
       description:
         "Master modern web development with React, Node.js, and MongoDB",
-      duration: "12 weeks",
-      students: 2543,
-      rating: 4.8,
+      duration: "2 months",
       image: web,
     },
     {
@@ -53,39 +48,31 @@ const CourseCarousel = () => {
       category: "Marketing",
       description:
         "Learn SEO, social media marketing, and digital advertising strategies",
-      duration: "8 weeks",
-      students: 1876,
-      rating: 4.7,
+      duration: "2 months",
       image: marketing,
     },
     {
       id: 3,
-      title: "Video Production Pro",
-      category: "Creative",
+      title: "Video Editing",
+      category: "Editing",
       description: "From filming to editing - create professional videos",
-      duration: "10 weeks",
-      students: 1321,
-      rating: 4.9,
+      duration: "2 months",
       image: video,
     },
     {
       id: 4,
-      title: "Graphic Design Fundamentals",
-      category: "Design",
+      title: "Graphic Designing",
+      category: "Designing",
       description: "Learn typography and color theory",
-      duration: "6 weeks",
-      students: 2890,
-      rating: 4.6,
+      duration: "2 months",
       image: graphics,
     },
     {
       id: 5,
-      title: "E-commerce Success",
+      title: "E-commerce",
       category: "Business",
       description: "Build profitable online stores",
-      duration: "9 weeks",
-      students: 2105,
-      rating: 4.8,
+      duration: "2 months",
       image: ecommerce,
     },
     {
@@ -93,9 +80,7 @@ const CourseCarousel = () => {
       title: "Freelancing Career Guide",
       category: "Career",
       description: "Start and grow your freelance business",
-      duration: "5 weeks",
-      students: 3456,
-      rating: 4.9,
+      duration: "2 months",
       image: freelancing,
     },
   ];
@@ -103,8 +88,7 @@ const CourseCarousel = () => {
   const getCourse = (offset: number) =>
     courses[(currentIndex + offset + courses.length) % courses.length];
 
-  const goToNext = () =>
-    setCurrentIndex((prev) => (prev + 1) % courses.length);
+  const goToNext = () => setCurrentIndex((prev) => (prev + 1) % courses.length);
 
   const goToPrev = () =>
     setCurrentIndex((prev) => (prev - 1 + courses.length) % courses.length);
@@ -126,45 +110,44 @@ const CourseCarousel = () => {
   const prev = getCourse(-1);
   const next = getCourse(1);
 
-  // Animation variants with proper typing
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" as any }
-    }
+      transition: { duration: 0.8, ease: "easeOut" as any },
+    },
   };
 
   const sideCardVariants: Variants = {
     hidden: { opacity: 0, x: 50, scale: 0.9 },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+    visible: {
+      opacity: 1,
+      x: 0,
       scale: 1,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.5 },
     },
   };
 
   const centerCardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      transition: { duration: 0.5, ease: "easeOut" as any } 
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" as any },
     },
   };
 
   return (
     <div ref={carouselRef} className="bg-[#000] py-20 px-4">
-      <motion.div 
+      <motion.div
         className="max-w-7xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.3 }}
         variants={containerVariants}
       >
-        <motion.h1 
+        <motion.h1
           className="text-center text-4xl font-[poppins] font-bold text-white mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -209,17 +192,6 @@ const CourseCarousel = () => {
               />
 
               <div className="p-6">
-                <div className="flex justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <FaStar className="text-yellow-400" />
-                    <span className="text-white font-bold">{current.rating}</span>
-                    <FaUsers className="text-gray-400 ml-4" />
-                    <span className="text-gray-300">
-                      {current.students.toLocaleString()}
-                    </span>
-                  </div>
-                </div>
-
                 <h2 className="text-2xl font-bold text-white mb-2">
                   {current.title}
                 </h2>
@@ -260,23 +232,23 @@ const CourseCarousel = () => {
         </div>
 
         {/* NAV BUTTONS */}
-        <motion.div 
+        <motion.div
           className="flex justify-center items-center gap-8 mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <motion.button 
-            onClick={goToPrev} 
+          <motion.button
+            onClick={goToPrev}
             className="p-4 bg-gradient-to-r from-[#0D76BC] to-[#4AA3DF] text-white rounded-full hover:shadow-lg transition"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <FaChevronLeft />
           </motion.button>
-          <motion.button 
-            onClick={goToNext} 
+          <motion.button
+            onClick={goToNext}
             className="p-4 bg-gradient-to-r from-[#0D76BC] to-[#4AA3DF] text-white rounded-full hover:shadow-lg transition"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -295,7 +267,7 @@ const SideCard = ({ course }: { course: Course }) => (
     whileHover={{ scale: 1.05 }}
     transition={{ duration: 0.3 }}
   >
-    <motion.div 
+    <motion.div
       className="relative overflow-hidden rounded-2xl mb-5"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -307,7 +279,7 @@ const SideCard = ({ course }: { course: Course }) => (
         alt={course.title}
         className="w-full h-50 object-cover"
       />
-      <motion.span 
+      <motion.span
         className="absolute top-4 left-4 px-3 py-1 bg-[#0D76BC] text-white text-xs font-bold rounded-full"
         initial={{ x: -20, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -318,26 +290,13 @@ const SideCard = ({ course }: { course: Course }) => (
       </motion.span>
     </motion.div>
 
-    <div className="flex justify-between mb-3">
-      <div className="flex items-center gap-1">
-        <FaStar className="text-yellow-400 text-sm" />
-        <span className="text-white font-bold text-sm">{course.rating}</span>
-      </div>
-    </div>
-
     <h3 className="text-white font-semibold mb-3 line-clamp-2">
       {course.title}
     </h3>
 
-    <div className="flex justify-between text-gray-400 text-sm">
-      <div className="flex items-center gap-1">
-        <FaClock />
-        <span>{course.duration}</span>
-      </div>
-      <div className="flex items-center gap-1">
-        <FaUsers />
-        <span>{course.students.toLocaleString()}</span>
-      </div>
+    <div className="flex justify-start text-gray-400 text-sm items-center gap-2">
+      <FaClock />
+      <span>{course.duration}</span>
     </div>
   </motion.div>
 );
