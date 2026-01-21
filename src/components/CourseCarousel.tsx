@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView, type Variants } from "framer-motion";
+
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -31,7 +32,7 @@ const WHATSAPP_NUMBER = "923001234567"; // 🔴 replace only this
 
 const CourseCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(carouselRef, { once: false, amount: 0.3 });
 
   const courses: Course[] = [
@@ -125,24 +126,33 @@ const CourseCarousel = () => {
   const prev = getCourse(-1);
   const next = getCourse(1);
 
-  // Animation variants
-  const containerVariants = {
+  // Animation variants with proper typing
+  const containerVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.8, ease: "easeOut" as any }
     }
   };
 
-  const sideCardVariants = {
+  const sideCardVariants: Variants = {
     hidden: { opacity: 0, x: 50, scale: 0.9 },
-    visible: { opacity: 1, x: 0, scale: 1 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      scale: 1,
+      transition: { duration: 0.5 }
+    },
   };
 
-  const centerCardVariants = {
+  const centerCardVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { duration: 0.5, ease: "easeOut" as any } 
+    },
   };
 
   return (
@@ -283,6 +293,7 @@ const SideCard = ({ course }: { course: Course }) => (
   <motion.div
     className="bg-gradient-to-br from-gray-900 to-black rounded-3xl p-5 shadow-2xl border border-gray-800"
     whileHover={{ scale: 1.05 }}
+    transition={{ duration: 0.3 }}
   >
     <motion.div 
       className="relative overflow-hidden rounded-2xl mb-5"
