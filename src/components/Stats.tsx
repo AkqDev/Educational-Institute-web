@@ -90,9 +90,9 @@ const StatCard = ({
   return (
     <motion.div
       variants={itemVariants}
-      className="relative flex h-55 w-55 items-center justify-center rounded-full
+      className="relative hidden md:flex h-55 w-55 items-center justify-center rounded-full
       bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_0_20px_rgba(13,118,188,0.25)]
-      md:shadow-[0_0_70px_rgba(13,118,188,0.25)]"
+      md:shadow-[0_0_70px_rgba(13,118,188,0.25)] "
     >
       <div className="text-center">
         <p className="text-3xl md:text-4xl font-bold text-white">
@@ -130,7 +130,7 @@ const Stats = () => {
           <StatCard key={index} stat={stat} startCounting={startCounting} />
         ))}
       </motion.div>
-      
+
       {/* Features Section */}
       <motion.div
         variants={featureContainerVariants}

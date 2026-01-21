@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { motion, useInView,type Variants } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
 const faqs = [
