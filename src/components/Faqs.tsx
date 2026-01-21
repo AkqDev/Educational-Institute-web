@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { FiChevronDown } from "react-icons/fi";
 
@@ -25,13 +25,13 @@ const faqs = [
   },
 ];
 
-// ---------------- Animation Variants ----------------
+// Framer Motion container variants
 const containerVariants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, ease: "easeInOut", staggerChildren: 0.1 },
   },
 };
 
@@ -39,10 +39,6 @@ const Faqs = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { margin: "-150px" });
-
-  // Detect mobile to disable hover transitions
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => setIsMobile(window.innerWidth < 768), []);
 
   return (
     <motion.section
@@ -107,10 +103,10 @@ const Faqs = () => {
                   </span>
                 </button>
 
-                {/* CSS-based collapse for smooth and light animations */}
+                {/* Smooth CSS-based collapse */}
                 <div
                   style={{
-                    maxHeight: isOpen ? "500px" : "0",
+                    maxHeight: isOpen ? "500px" : "0px",
                     opacity: isOpen ? 1 : 0,
                   }}
                   className="overflow-hidden transition-all duration-300 mt-4"
