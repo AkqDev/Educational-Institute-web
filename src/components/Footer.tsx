@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2 md:text-center">
               {[
                 { name: "Home", path: "/" },
-                { name: "fee Programs", path: "/fee-programs" },
+                { name: "Our Courses", path: "/Our-courses" },
                 { name: "Contact Us", path: "/contact" },
                 { name: "Testimonials", path: "/testimonials" },
               ].map((item) => (

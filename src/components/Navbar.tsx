@@ -37,10 +37,10 @@ const Navbar = () => {
 
                 <li>
                   <Link
-                    to="/fee-programs"
+                    to="/Our-courses"
                     className="px-4 py-2 rounded-full transition-all duration-300 hover:bg-[#0D76BC] hover:text-white"
                   >
-                    Fee Programs
+                    Our Courses
                   </Link>
                 </li>
 
@@ -126,7 +126,7 @@ const Navbar = () => {
             <nav className="flex flex-col items-center justify-center gap-6 text-white text-xl font-bold flex-1">
 
               <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
-              <Link to="/fee-programs" onClick={() => setIsOpen(false)}>Free Programs</Link>
+              <Link to="/Our-courses" onClick={() => setIsOpen(false)}>Our Courses</Link>
               <Link to="/contact" onClick={() => setIsOpen(false)}>Contact Us</Link>
 
               <a
