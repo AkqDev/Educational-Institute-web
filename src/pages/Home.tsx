@@ -6,6 +6,7 @@ import Faqs from '../components/Faqs'
 import Stats from '../components/Stats'
 import Testimonials from '../components/Testimonials'
 import CourseCarousel from '../components/CourseCarousel'
+import Instructor from '../components/Instructor'
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <CourseCarousel/>
       <Map/>
       <Values/>
+      <Instructor/>
       <Stats/>
       <Testimonials/>
       <Faqs/>

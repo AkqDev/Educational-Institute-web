@@ -1,7 +1,9 @@
-/* index.css - Updated version */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Unbounded:wght@200..900&display=swap');
 @import "tailwindcss";
 
+/* =========================
+   THEME
+========================= */
 @theme {
   @keyframes glitch {
     0% { clip-path: inset(20% 0 50% 0); }
@@ -28,17 +30,34 @@
   }
 }
 
+/* =========================
+   UTILITIES
+========================= */
 @layer utilities {
   .animate-glitch-after {
     animation: glitch var(--after-duration) infinite linear alternate-reverse;
   }
-  
+
   .animate-glitch-before {
     animation: glitch var(--before-duration) infinite linear alternate-reverse;
   }
+
+  /* Hide scrollbar (ALL browsers) */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
+/* =========================
+   GLOBAL STYLES
+========================= */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #000;
+  overflow-x: hidden;
 }
