@@ -5,7 +5,6 @@ import {
   FaWhatsapp,
   FaInstagram,
   FaFacebookF,
-  FaLinkedinIn,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
