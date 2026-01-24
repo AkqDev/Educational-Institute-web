@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 import Amina from '../assets/Amina.png';
 import InstructorHaseeb from '../assets/InstructorHaseeb.png';
@@ -36,7 +36,7 @@ const Instructor = () => {
     },
   ];
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const isPaused = useRef(false);
   const speed = 2.6;
   const isInView = useInView(containerRef, { once: false, amount: 0.3 });
@@ -47,7 +47,7 @@ const Instructor = () => {
     const container = containerRef.current;
     if (!container) return;
 
-    let rafId;
+    let rafId: number;
     let scrollX = 0;
     const cardWidth = 300 + 32;
 
@@ -103,7 +103,7 @@ const Instructor = () => {
       y: 0,
       scale: 1,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
         damping: 15,
         duration: 0.6,
@@ -113,7 +113,7 @@ const Instructor = () => {
       y: -10,
       scale: 1.02,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 300,
         damping: 15,
         duration: 0.2,
@@ -128,7 +128,7 @@ const Instructor = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 100,
         delay: 0.2,
       }
@@ -141,7 +141,7 @@ const Instructor = () => {
       scale: 1.1,
       transition: {
         duration: 0.4,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -188,7 +188,7 @@ const Instructor = () => {
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, type: 'spring' }}
+          transition={{ duration: 0.6, type: 'spring' as const }}
           className="text-3xl md:text-4xl font-bold text-[#0D76BC] mb-4"
         >
           Meet Our Instructors
@@ -232,7 +232,7 @@ const Instructor = () => {
                 className="w-full h-full object-cover"
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
+                transition={{ duration: 0.7, ease: 'easeOut' as const }}
               />
             </motion.div>
 
@@ -276,7 +276,7 @@ const Instructor = () => {
                 x: '100%',
                 opacity: [0, 0.5, 0],
                 transition: {
-                  x: { duration: 0.8, ease: 'easeInOut' },
+                  x: { duration: 0.8, ease: 'easeInOut' as const },
                   opacity: { duration: 0.8 },
                 },
               }}
@@ -289,13 +289,13 @@ const Instructor = () => {
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.1 }}
-        transition={{ delay: 0.8, duration: 1, type: 'spring' }}
+        transition={{ delay: 0.8, duration: 1, type: 'spring' as const }}
         className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl"
       />
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.1 }}
-        transition={{ delay: 1, duration: 1, type: 'spring' }}
+        transition={{ delay: 1, duration: 1, type: 'spring' as const }}
         className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl"
       />
     </motion.section>
