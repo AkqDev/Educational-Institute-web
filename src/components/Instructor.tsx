@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
 
-import InstructorAmina from '../assets/InstructorAmina.png';
+import Amina from '../assets/Amina.png';
 import InstructorHaseeb from '../assets/InstructorHaseeb.png';
 import InstructorShafeeq from '../assets/InstructorShafeeq.png';
 import InstructorWasif from '../assets/InstructorWasif.png';
@@ -10,7 +10,7 @@ import InstructorAwais from '../assets/InstructorAwais.png';
 const Instructor = () => {
   const instructors = [
     {
-      img: InstructorAmina,
+      img: Amina,
       name: 'Amina Gulzar',
       role: 'Founder & MD of Digital Era | Graphic Designer & Video Editor',
     },

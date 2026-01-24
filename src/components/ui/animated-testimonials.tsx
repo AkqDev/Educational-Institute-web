@@ -84,7 +84,7 @@ export const AnimatedTestimonials = ({
                 <div className="absolute -top-4 -left-4 z-10">
                   <Quote className="h-8 w-8 lg:h-12 lg:w-12 text-[#0D76BC] opacity-50" />
                 </div>
-                <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 w-full overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl">
+                <div className="relative h-48 sm:h-56 md:h-64 lg:h-90 w-full overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl">
                   <img
                     src={getOptimizedImageUrl(testimonials[currentIndex].src)}
                     alt={testimonials[currentIndex].name}
@@ -99,7 +99,7 @@ export const AnimatedTestimonials = ({
             {/* Right side - Content */}
             <div className="w-full lg:w-3/5 flex flex-col justify-between min-h-64 lg:min-h-80">
               <div>
-                <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-200 mb-6 lg:mb-8 leading-relaxed font-light">
+                <blockquote className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-6 lg:mb-8 leading-relaxed font-light">
                   "{testimonials[currentIndex].quote}"
                 </blockquote>
                 
