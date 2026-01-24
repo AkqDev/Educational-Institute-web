@@ -4,37 +4,42 @@ import { FiChevronDown } from "react-icons/fi";
 
 const faqs = [
   {
-    question: "What is SEO and why is it important?",
+    question: "Do you provide certificates after course completion?",
     answer:
-      "SEO (Search Engine Optimization) helps your website rank higher on search engines, increasing visibility, traffic, and credibility.",
+      "Yes, we provide a recognized certificate upon successful completion of the course, which can be added to your resume and portfolio.",
   },
   {
-    question: "How long does it take to see results from SEO?",
+    question: "Are the classes online or on-campus?",
     answer:
-      "SEO is a long-term strategy. Typically, noticeable results can take 3–6 months depending on competition and consistency.",
+      "We offer both online and on-campus classes, allowing students to choose the learning mode that best fits their schedule.",
   },
   {
-    question: "What are the key factors that influence SEO rankings?",
+    question: "Will I get practical hands-on training?",
     answer:
-      "Key factors include content quality, keywords, backlinks, page speed, mobile-friendliness, and user experience.",
+      "Absolutely. Our training focuses on practical, hands-on projects to help students gain real-world experience.",
   },
   {
-    question: "Do I need to hire an SEO agency, or can I do SEO myself?",
+    question: "Do you offer job placement or internship support?",
     answer:
-      "You can do basic SEO yourself, but an experienced agency can help achieve faster and more scalable results.",
+      "Yes, we provide career guidance, internship opportunities, and job placement support to help students start their professional journey.",
+  },
+  {
+    question: "How can I enroll in a course?",
+    answer:
+      "You can enroll by contacting us through our website, visiting our campus, or reaching out via phone or WhatsApp.",
   },
 ];
 
-// Framer Motion container variants with proper typing
+// Animation container (runs once only)
 const containerVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: 0.8, 
-      ease: "easeInOut" as const, // Type assertion for valid easing
-      staggerChildren: 0.1 
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut",
+      staggerChildren: 0.08,
     },
   },
 };
@@ -42,7 +47,12 @@ const containerVariants: Variants = {
 const Faqs = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { margin: "-150px" });
+
+  // 🔥 Animate ONCE – prevents mobile lag
+  const isInView = useInView(sectionRef, {
+    margin: "-120px",
+    once: true,
+  });
 
   return (
     <motion.section
@@ -86,21 +96,25 @@ const Faqs = () => {
         <div className="mt-12 space-y-5 text-left">
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
+
             return (
               <motion.div
                 key={index}
                 className="rounded-2xl bg-[#161616] px-6 py-5 hover:bg-[#1b1b1b] transition-colors duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.08 * index }}
               >
                 <button
                   className="flex w-full items-center justify-between text-left"
-                  onClick={() => setActiveIndex(isOpen ? null : index)}
+                  onClick={() =>
+                    setActiveIndex(isOpen ? null : index)
+                  }
                 >
                   <span className="text-lg font-medium text-white">
                     {faq.question}
                   </span>
+
                   <span className="ml-4 flex p-2 items-center justify-center rounded-full bg-[#0D76BC]">
                     <FiChevronDown
                       className={`text-xl text-white transition-transform duration-300 ${
@@ -110,18 +124,23 @@ const Faqs = () => {
                   </span>
                 </button>
 
-                {/* Smooth CSS-based collapse */}
-                <div
-                  style={{
-                    maxHeight: isOpen ? "500px" : "0px",
+                {/* 🚀 Mobile-optimized accordion */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? "auto" : 0,
                     opacity: isOpen ? 1 : 0,
                   }}
-                  className="overflow-hidden transition-all duration-300 mt-4"
+                  transition={{
+                    duration: 0.25,
+                    ease: "easeOut",
+                  }}
+                  className="overflow-hidden mt-4"
                 >
                   <p className="text-sm text-gray-300 leading-relaxed">
                     {faq.answer}
                   </p>
-                </div>
+                </motion.div>
               </motion.div>
             );
           })}

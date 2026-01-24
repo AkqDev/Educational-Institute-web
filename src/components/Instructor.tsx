@@ -5,6 +5,7 @@ import Amina from '../assets/Amina.png';
 import InstructorHaseeb from '../assets/InstructorHaseeb.png';
 import InstructorShafeeq from '../assets/InstructorShafeeq.png';
 import InstructorWasif from '../assets/InstructorWasif.png';
+import InstructorMuneeb from '../assets/InstructorMuneeb.png'
 import InstructorAwais from '../assets/InstructorAwais.png';
 
 const Instructor = () => {
@@ -41,6 +42,11 @@ const Instructor = () => {
       img: InstructorShafeeq,
       name: 'Shafeeq ul Rehman',
       role: 'IT Specialist',
+    },
+    {
+      img: InstructorMuneeb,
+      name: 'Muneeb Ahmad',
+      role: 'Social media handler',
     },
     {
       img: InstructorAwais,
@@ -177,7 +183,7 @@ const Instructor = () => {
       initial="hidden"
       animate={controls}
       variants={containerVariants}
-      className="relative w-full py-12 md:py-25 bg-[#000] overflow-hidden"
+      className="relative w-full py-10 md:py-25 bg-[#000] overflow-hidden"
     >
       {/* Gradient overlays with animation - Reduced on mobile */}
       <motion.div
