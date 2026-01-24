@@ -84,7 +84,7 @@ export const AnimatedTestimonials = ({
                 <div className="absolute -top-4 -left-4 z-10">
                   <Quote className="h-8 w-8 lg:h-12 lg:w-12 text-[#0D76BC] opacity-50" />
                 </div>
-                <div className="relative h-56 md:h-64 lg:h-90 w-full overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl">
+                <div className="relative h-64 lg:h-90 w-full overflow-hidden rounded-xl lg:rounded-2xl shadow-lg lg:shadow-2xl">
                   <img
                     src={getOptimizedImageUrl(testimonials[currentIndex].src)}
                     alt={testimonials[currentIndex].name}
