@@ -26,6 +26,7 @@ const Map = () => {
 
   // 🔹 Detect mobile - fixed useEffect
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -42,11 +43,19 @@ const Map = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   /* ------------------ Globe Config ------------------ */
   const globeConfig = {
     pointSize: 0.1,
-    autoRotateSpeed: isMobile ? 0 : 0.005,
-    devicePixelRatio: isMobile ? 1 : 2,
+    autoRotateSpeed: isMobile ? 0.001 : 0.005, // Slower rotation on mobile
   };
 
   // 🔹 Only Pakistan
@@ -55,21 +64,21 @@ const Map = () => {
   return (
     <section className="w-full py-16 md:py-24 bg-[#000]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
 
           {/* ------------------ LEFT CONTENT ------------------ */}
           <motion.div
             ref={leftRef}
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={leftInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="lg:w-1/2 space-y-8 lg:pl-4 lg:pr-10 order-2 lg:order-1"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:w-1/2 space-y-6 md:space-y-8 lg:pl-4 lg:pr-10 order-2 lg:order-1"
           >
-            <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
+            <h1 className="text-[#0D76BC] text-2xl md:text-3xl font-bold font-[poppins] text-center md:text-left">
               Global Learning Network
             </h1>
 
-            <p className="text-lg text-gray-200 max-w-2xl mt-2 text-center md:text-left">
+            <p className="text-base md:text-lg text-gray-200 max-w-2xl mt-2 text-center md:text-left">
               We operate from a single official branch while serving students
               internationally through online education, global mentors, and
               digital collaboration. Our platform connects learners across
@@ -81,14 +90,14 @@ const Map = () => {
           {/* ------------------ GLOBE ------------------ */}
           <motion.div
             ref={rightRef}
-            initial={{ opacity: 0, y: 60 }}
-            animate={rightInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={rightInView && isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:w-1/2 w-full order-1 lg:order-2"
           >
-            <div className="w-full h-[300px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
-              {/* 🔹 Render globe ONLY when visible */}
-              {rightInView && (
+            <div className="w-full h-[350px] sm:h-[400px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+              {/* 🔹 Render globe ONLY when visible and loaded */}
+              {rightInView && isLoaded && (
                 <World data={allLocations} globeConfig={globeConfig} />
               )}
             </div>

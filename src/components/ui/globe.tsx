@@ -9,7 +9,6 @@ interface GlobeProps {
   globeConfig?: {
     pointSize?: number;
     autoRotateSpeed?: number;
-    devicePixelRatio?: number;
   };
 }
 
@@ -21,10 +20,13 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     let phi = 0;
     let width = 0;
+    let height = 0;
+    let globe: ReturnType<typeof createGlobe>;
 
     const onResize = () => {
       if (canvasRef.current) {
         width = canvasRef.current.offsetWidth;
+        height = canvasRef.current.offsetHeight;
       }
     };
 
@@ -36,59 +38,56 @@ export function World({ data, globeConfig }: GlobeProps) {
       size: globeConfig?.pointSize || 0.1,
     }));
 
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: globeConfig?.devicePixelRatio || 2,
-      width: width * 2,
-      height: width * 2,
-      phi: 0,
-      theta: 0.3,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 10000, // Reduced for mobile
-      mapBrightness: 6,
-      baseColor: [0.051, 0.463, 0.737],
-      markerColor: [0.051, 0.463, 0.737],
-      glowColor: [0.051, 0.463, 0.737],
-      markers,
-      onRender: (state: Record<string, any>) => {
-        state.phi = phi;
-        phi += globeConfig?.autoRotateSpeed || 0.005;
-        state.width = width * 2;
-        state.height = width * 2;
-      },
-    });
+    // Wait for dimensions to be set
+    const initGlobe = () => {
+      if (width === 0 || height === 0) {
+        onResize();
+      }
+      
+      globe = createGlobe(canvasRef.current!, {
+        devicePixelRatio: 1, // Fixed to 1 for better mobile performance
+        width: width,
+        height: height,
+        phi: 0,
+        theta: 0.3,
+        dark: 1,
+        diffuse: 1.2,
+        mapSamples: 8000, // Further reduced for mobile
+        mapBrightness: 6,
+        baseColor: [0.051, 0.463, 0.737],
+        markerColor: [0.051, 0.463, 0.737],
+        glowColor: [0.051, 0.463, 0.737],
+        markers,
+        onRender: (state: Record<string, any>) => {
+          state.phi = phi;
+          phi += globeConfig?.autoRotateSpeed || 0.005;
+          state.width = width;
+          state.height = height;
+        },
+      });
+    };
 
     const timeout = setTimeout(() => {
       if (canvasRef.current) {
         canvasRef.current.style.opacity = "1";
       }
-    }, 0);
+      initGlobe();
+    }, 50);
 
     return () => {
       clearTimeout(timeout);
-      globe.destroy();
+      if (globe) {
+        globe.destroy();
+      }
       window.removeEventListener("resize", onResize);
     };
   }, [data, globeConfig]);
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        background: "transparent",
-      }}
-    >
+    <div className="w-full h-full relative">
       <canvas
         ref={canvasRef}
-        style={{
-          width: "100%",
-          height: "100%",
-          opacity: 0,
-          transition: "opacity 1s ease",
-          background: "transparent",
-        }}
+        className="w-full h-full opacity-0 transition-opacity duration-500 "
       />
     </div>
   );
