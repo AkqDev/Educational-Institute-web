@@ -95,7 +95,7 @@ const Map = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:w-1/2 w-full order-1 lg:order-2"
           >
-            <div className="w-full h-[350px] sm:h-[400px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-full h-[400px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
               {/* 🔹 Render globe ONLY when visible and loaded */}
               {rightInView && isLoaded && (
                 <World data={allLocations} globeConfig={globeConfig} />
