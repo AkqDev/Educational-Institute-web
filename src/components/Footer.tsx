@@ -21,8 +21,8 @@ const Footer: React.FC = () => {
       url: "https://www.facebook.com/digitaleraskill?rdid=PD4URBu6rwikb86i&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FRuvEaKgG%2F#",
     },
     {
-      icon: FaLinkedinIn,
-      url: "https://www.linkedin.com/in/your_profile",
+      icon: FaWhatsapp,
+      url: "https://whatsapp.com/channel/0029VbAh2iN9mrGiJURCEg2I",
     },
   ];
 
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
           className="md:w-1/3 flex justify-start"
         >
           <div className="text-left space-y-4">
-            <img src={logo} alt="logo" className="w-20 h-20" />
+            <img src={logo} alt="logo" className="w-22 h-auto" />
             <p className="text-sm leading-relaxed opacity-90">
               DigitalEra is a NAVTTC-approved institute offering high-quality,
               industry-standard courses with a strong focus on practical skills.
