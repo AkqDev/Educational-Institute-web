@@ -14,7 +14,6 @@ interface GlobeProps {
 
 export function World({ data, globeConfig }: GlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const globeRef = useRef<any>(null);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -22,7 +21,7 @@ export function World({ data, globeConfig }: GlobeProps) {
     let phi = 0;
     let width = 0;
     let height = 0;
-    let animationFrameId: number;
+    let globe: ReturnType<typeof createGlobe>;
 
     const onResize = () => {
       if (canvasRef.current) {
@@ -39,19 +38,21 @@ export function World({ data, globeConfig }: GlobeProps) {
       size: globeConfig?.pointSize || 0.1,
     }));
 
-    // Initialize globe after a small delay
+    // Wait for dimensions to be set
     const initGlobe = () => {
-      if (!canvasRef.current || width === 0 || height === 0) return;
+      if (width === 0 || height === 0) {
+        onResize();
+      }
       
-      globeRef.current = createGlobe(canvasRef.current, {
-        devicePixelRatio: Math.min(window.devicePixelRatio, 2),
+      globe = createGlobe(canvasRef.current!, {
+        devicePixelRatio: 1, // Fixed to 1 for better mobile performance
         width: width,
         height: height,
         phi: 0,
         theta: 0.3,
         dark: 1,
         diffuse: 1.2,
-        mapSamples: 8000,
+        mapSamples: 8000, // Further reduced for mobile
         mapBrightness: 6,
         baseColor: [0.051, 0.463, 0.737],
         markerColor: [0.051, 0.463, 0.737],
@@ -64,21 +65,19 @@ export function World({ data, globeConfig }: GlobeProps) {
           state.height = height;
         },
       });
-
-      // Show canvas immediately
-      canvasRef.current.style.opacity = "1";
     };
 
-    // Start initialization
-    const timeout = setTimeout(initGlobe, 0);
+    const timeout = setTimeout(() => {
+      if (canvasRef.current) {
+        canvasRef.current.style.opacity = "1";
+      }
+      initGlobe();
+    }, 50);
 
     return () => {
       clearTimeout(timeout);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      if (globeRef.current) {
-        globeRef.current.destroy();
+      if (globe) {
+        globe.destroy();
       }
       window.removeEventListener("resize", onResize);
     };
@@ -88,10 +87,7 @@ export function World({ data, globeConfig }: GlobeProps) {
     <div className="w-full h-full relative">
       <canvas
         ref={canvasRef}
-        className="w-full h-full opacity-0"
-        style={{
-          transition: 'opacity 0.5s ease-in-out',
-        }}
+        className="w-full h-full opacity-0 transition-opacity duration-500 "
       />
     </div>
   );

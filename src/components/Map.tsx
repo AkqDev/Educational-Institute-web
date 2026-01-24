@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { motion, useInView } from "framer-motion";
 
@@ -10,7 +10,7 @@ const World = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full h-full rounded-2xl bg-neutral-900" />
+      <div className="w-full h-full animate-pulse rounded-2xl bg-neutral-900" />
     ),
   }
 );
@@ -20,9 +20,43 @@ const Map = () => {
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
 
-  // 🔹 Run animation ONLY once
-  const leftInView = useInView(leftRef, { once: true });
-  const rightInView = useInView(rightRef, { once: true });
+  // 🔹 Run animation ONLY once (important for mobile)
+  const leftInView = useInView(leftRef, { once: true, margin: "-120px" });
+  const rightInView = useInView(rightRef, { once: true, margin: "-120px" });
+
+  // 🔹 Detect mobile - fixed useEffect
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  /* ------------------ Globe Config ------------------ */
+  const globeConfig = {
+    pointSize: 0.1,
+    autoRotateSpeed: isMobile ? 0.001 : 0.005, // Slower rotation on mobile
+  };
 
   // 🔹 Only Pakistan
   const allLocations = [{ lat: 24.8607, lng: 67.0011 }];
@@ -37,7 +71,7 @@ const Map = () => {
             ref={leftRef}
             initial={{ opacity: 0, y: 40 }}
             animate={leftInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:w-1/2 space-y-6 md:space-y-8 lg:pl-4 lg:pr-10 order-2 lg:order-1"
           >
             <h1 className="text-[#0D76BC] text-2xl md:text-3xl font-bold font-[poppins] text-center md:text-left">
@@ -57,20 +91,14 @@ const Map = () => {
           <motion.div
             ref={rightRef}
             initial={{ opacity: 0, y: 40 }}
-            animate={rightInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            animate={rightInView && isLoaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:w-1/2 w-full order-1 lg:order-2"
           >
-            <div className="w-full h-[400px] md:h-[580px] rounded-2xl overflow-hidden shadow-2xl">
-              {/* 🔹 Always render globe when in view */}
-              {rightInView && (
-                <World 
-                  data={allLocations} 
-                  globeConfig={{ 
-                    pointSize: 0.1,
-                    autoRotateSpeed: 0.003 
-                  }} 
-                />
+            <div className="w-full h-[400px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+              {/* 🔹 Render globe ONLY when visible and loaded */}
+              {rightInView && isLoaded && (
+                <World data={allLocations} globeConfig={globeConfig} />
               )}
             </div>
           </motion.div>
