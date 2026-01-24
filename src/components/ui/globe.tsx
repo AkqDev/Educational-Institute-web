@@ -21,7 +21,6 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     let phi = 0;
     let width = 0;
-    let animationFrameId: number;
 
     const onResize = () => {
       if (canvasRef.current) {
@@ -67,7 +66,6 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     return () => {
       clearTimeout(timeout);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
