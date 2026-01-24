@@ -1,4 +1,3 @@
-// components/ui/globe.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -10,6 +9,7 @@ interface GlobeProps {
   globeConfig?: {
     pointSize?: number;
     autoRotateSpeed?: number;
+    devicePixelRatio?: number;
   };
 }
 
@@ -21,6 +21,7 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     let phi = 0;
     let width = 0;
+    let animationFrameId: number;
 
     const onResize = () => {
       if (canvasRef.current) {
@@ -37,14 +38,14 @@ export function World({ data, globeConfig }: GlobeProps) {
     }));
 
     const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
+      devicePixelRatio: globeConfig?.devicePixelRatio || 2,
       width: width * 2,
       height: width * 2,
       phi: 0,
       theta: 0.3,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 16000,
+      mapSamples: 10000, // Reduced for mobile
       mapBrightness: 6,
       baseColor: [0.051, 0.463, 0.737],
       markerColor: [0.051, 0.463, 0.737],
@@ -66,6 +67,7 @@ export function World({ data, globeConfig }: GlobeProps) {
 
     return () => {
       clearTimeout(timeout);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
@@ -87,7 +89,7 @@ export function World({ data, globeConfig }: GlobeProps) {
           height: "100%",
           opacity: 0,
           transition: "opacity 1s ease",
-          background: "transparent", // ✅ removes background before loading
+          background: "transparent",
         }}
       />
     </div>

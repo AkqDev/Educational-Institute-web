@@ -24,11 +24,22 @@ const Map = () => {
   const leftInView = useInView(leftRef, { once: true, margin: "-120px" });
   const rightInView = useInView(rightRef, { once: true, margin: "-120px" });
 
-  // 🔹 Detect mobile
+  // 🔹 Detect mobile - fixed useEffect
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   /* ------------------ Globe Config ------------------ */
@@ -49,10 +60,10 @@ const Map = () => {
           {/* ------------------ LEFT CONTENT ------------------ */}
           <motion.div
             ref={leftRef}
-            initial={{ opacity: 0, x: -60 }}
-            animate={leftInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 60 }}
+            animate={leftInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="lg:w-1/2 space-y-8 lg:pl-4 lg:pr-10"
+            className="lg:w-1/2 space-y-8 lg:pl-4 lg:pr-10 order-2 lg:order-1"
           >
             <h1 className="text-[#0D76BC] text-3xl font-bold font-[poppins] text-center md:text-left">
               Global Learning Network
@@ -70,12 +81,12 @@ const Map = () => {
           {/* ------------------ GLOBE ------------------ */}
           <motion.div
             ref={rightRef}
-            initial={{ opacity: 0, x: 60 }}
-            animate={rightInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 60 }}
+            animate={rightInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="lg:w-1/2 w-full"
+            className="lg:w-1/2 w-full order-1 lg:order-2"
           >
-            <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-full h-[300px] md:h-[520px] rounded-2xl overflow-hidden shadow-2xl">
               {/* 🔹 Render globe ONLY when visible */}
               {rightInView && (
                 <World data={allLocations} globeConfig={globeConfig} />
