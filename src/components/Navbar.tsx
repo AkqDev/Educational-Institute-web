@@ -111,7 +111,7 @@ const Navbar = () => {
             {/* HEADER */}
             <div className="flex justify-between items-center p-6">
               <Link to="/" onClick={() => setIsOpen(false)}>
-                <img src={logo} alt="logo" className="w-20 h-20 cursor-pointer" />
+                <img src={logo} alt="logo" className="w-22 h-auto cursor-pointer" />
               </Link>
 
               <button
