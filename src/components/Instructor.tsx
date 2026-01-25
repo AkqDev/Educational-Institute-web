@@ -30,7 +30,7 @@ const Instructor = () => {
     },
     {
       img: InstructorHaseeb,
-      name: 'Haseeb Ahmed',
+      name: 'Rana Haseeb Ahmed',
       role: 'CEO & Co-Founder of Digital Era | Marketing Specialist',
     },
     {
@@ -45,7 +45,7 @@ const Instructor = () => {
     },
     {
       img: InstructorMuneeb,
-      name: 'Muneeb Ahmad',
+      name: 'Rana Muneeb Ahmad',
       role: 'Social media handler',
     },
     {
