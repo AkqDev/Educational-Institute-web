@@ -149,10 +149,7 @@ const Hero: React.FC = () => {
               className="mt-4 text-base lg:text-[16px] text-gray-300 leading-relaxed"
             >
               Learn from experienced industry mentors, gain hands-on exposure
-              through real-world projects, and master cutting-edge technologies
-              including AI, modern software development, and emerging digital
-              skills. Our practical learning model prepares you for global
-              opportunities with confidence and clarity.
+              through real-world projects, and master cutting-edge technologies.
             </motion.p>
 
             <motion.div
