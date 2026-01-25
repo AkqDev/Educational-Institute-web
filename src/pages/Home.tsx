@@ -7,6 +7,7 @@ import Stats from '../components/Stats'
 import Testimonials from '../components/Testimonials'
 import CourseCarousel from '../components/CourseCarousel'
 import Instructor from '../components/Instructor'
+import Events from '../components/Events'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Instructor/>
       <Stats/>
       <Testimonials/>
+      <Events/>
       <Faqs/>
     </div>
   )
