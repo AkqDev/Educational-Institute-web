@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import Akbar from "../assets/Akbar.png";
 import Event from "../assets/Event.png";
 import Maaz from "../assets/Maaz.png";
@@ -45,7 +45,7 @@ export const PhotoGallery = ({
     };
   }, [animationDelay]);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
@@ -56,7 +56,7 @@ export const PhotoGallery = ({
     },
   };
 
-  const photoVariants = {
+  const photoVariants: Variants = {
     hidden: { x: 0, y: 0, rotate: 0, scale: 1 },
     visible: (custom: { x: string; y: string; order: number }) => ({
       x: custom.x,
@@ -64,7 +64,7 @@ export const PhotoGallery = ({
       rotate: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const, // Fix: Add 'as const' to make it a literal type
         stiffness: 70,
         damping: 12,
         delay: custom.order * 0.15,
