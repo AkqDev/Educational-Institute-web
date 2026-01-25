@@ -2,62 +2,61 @@ import React from "react";
 import MovingPrograms from "../components/ui/MovingPrograms";
 
 const Programs: React.FC = () => {
-  const coursesData = [
-  { 
-    name: "Digital Marketing", 
-    description: "Learn SEO, social media marketing, Google Ads, and email campaigns. Understand how to build brand awareness and drive traffic effectively. Gain practical skills to manage real-world digital marketing campaigns." 
+const coursesData = [
+  {
+    name: "Digital Marketing",
+    description: "Learn SEO, social media, and online advertising. Build skills to grow brands and drive traffic."
   },
-  { 
-    name: "Graphic Designing", 
-    description: "Create stunning visuals using Adobe Photoshop, Illustrator, and Figma. Learn color theory, typography, and composition for professional designs. Work on real projects to build a strong portfolio." 
+  {
+    name: "Graphic Designing",
+    description: "Design professional visuals using modern tools. Learn color, typography, and layout basics."
   },
-  { 
-    name: "Web Development", 
-    description: "Become a frontend, backend, or full-stack developer using HTML, CSS, JavaScript, and modern frameworks. Learn to build responsive websites and dynamic web applications. Understand database integration and deployment processes." 
+  {
+    name: "Web Development",
+    description: "Build responsive websites and web apps. Learn frontend, backend, and full-stack development."
   },
-  { 
-    name: "Python Programming", 
-    description: "Master Python programming from basics to advanced concepts. Work on real-life projects such as web scraping, automation, and data analysis. Understand object-oriented programming and build practical Python applications." 
+  {
+    name: "Python Programming",
+    description: "Learn Python from basics to advanced concepts. Create automation and real-world projects."
   },
-  { 
-    name: "Freelancing", 
-    description: "Learn how to start your freelancing career and attract clients globally. Understand how to create proposals, manage projects, and price services. Gain insights into building a sustainable online business." 
+  {
+    name: "Freelancing",
+    description: "Start earning online as a freelancer. Learn client handling, proposals, and pricing."
   },
-  { 
-    name: "Basic IT", 
-    description: "Understand computer fundamentals, networking basics, and operating systems. Learn essential software tools and troubleshooting techniques. Build foundational IT skills required for professional growth." 
+  {
+    name: "Basic IT",
+    description: "Understand computer fundamentals and software tools. Build strong IT foundations."
   },
-  { 
-    name: "Video Editing", 
-    description: "Edit professional videos using tools like Adobe Premiere Pro and Final Cut Pro. Learn transitions, color grading, and audio enhancement. Create videos for YouTube, social media, and professional projects." 
+  {
+    name: "Video Editing",
+    description: "Edit professional videos with modern tools. Learn transitions, effects, and audio basics."
   },
-  { 
-    name: "App Development", 
-    description: "Learn to build mobile apps for iOS and Android using Flutter or React Native. Understand UI/UX design principles for mobile platforms. Work on real projects and publish apps to app stores." 
+  {
+    name: "App Development",
+    description: "Create mobile apps for Android and iOS. Learn UI design and app deployment."
   },
-  { 
-    name: "E-commerce", 
-    description: "Learn to create, manage, and market online stores using Shopify, WooCommerce, or Magento. Understand payment gateways, inventory management, and customer engagement. Implement strategies to increase sales effectively." 
+  {
+    name: "E-commerce",
+    description: "Build and manage online stores. Learn product management and sales strategies."
   },
-  { 
-    name: "Spoken English", 
-    description: "Improve your English speaking and listening skills for personal and professional growth. Practice pronunciation, fluency, and grammar in real-life conversations. Gain confidence in communicating in global environments." 
+  {
+    name: "Spoken English",
+    description: "Improve speaking and listening skills. Gain confidence in daily and professional communication."
   },
-  { 
-    name: "Artificial Intelligence", 
-    description: "Learn AI fundamentals, machine learning algorithms, and neural networks. Work on real-world AI projects such as image recognition and chatbots. Understand how to implement AI solutions across industries." 
+  {
+    name: "Artificial Intelligence",
+    description: "Learn AI and machine learning basics. Work on smart, real-world applications."
   },
-  { 
-    name: "Computer Courses", 
-    description: "Explore various computer skills including MS Office, typing, and software basics. Understand essential tools for personal and professional tasks. Gain practical knowledge to boost productivity and efficiency." 
+  {
+    name: "Computer Courses",
+    description: "Learn essential computer and office skills. Improve productivity for daily tasks."
   },
 ];
-
 
   return (
     <div className="h-auto bg-[#000] w-auto">
     <div className="mt-40">
-      <h1 className="text-5xl md:text-6xl font-bold font-poppins text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-200 via-[#0D76BC] to-gray-200">
+      <h1 className="text-3xl md:text-4xl font-bold font-poppins text-center text-[#0D76BC] px-3">
   Our Courses
 </h1>
 <p className="text-white text-center mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
