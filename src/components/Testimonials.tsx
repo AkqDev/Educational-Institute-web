@@ -1,5 +1,8 @@
 import { AnimatedTestimonials } from "../components/ui/animated-testimonials";
 import hassan from '../assets/hassan.png'
+import Sarmad from '../assets/Sarmad.png'
+import UmaisReview from '../assets/UmaisReview.png'
+import Awais from '../assets/Awais.png'
 
 const Testimonials = () => {
   const testimonials = [
@@ -10,25 +13,22 @@ const Testimonials = () => {
       src: hassan,
     },
     {
-      quote:
-        "Implementation was seamless and the results exceeded our expectations. The platform's flexibility is remarkable.",
-      name: "Michael Rodriguez",
-      designation: "CTO at InnovateSphere",
-      src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      quote:"Digital Era provided me with the skills and confidence to excel in digital marketing. The hands-on training and real-world projects prepared me for a successful career in the industry.",
+      name: "Syed Sarmad Ali",
+      designation: "Digital Marketer",
+      src: Sarmad,
     },
     {
-      quote:
-        "This solution has significantly improved our team's productivity. The intuitive interface makes complex tasks simple.",
-      name: "Emily Watson",
-      designation: "Operations Director at CloudScale",
-      src: "https://images.unsplash.com/photo-1623582854588-d60de57fa33f?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      quote:"Freelancing course at Digital Era was a game-changer for me. The comprehensive curriculum and practical approach helped me build a strong foundation and launch my career as a Freelancer.",
+      name: "Umais Yousaf",
+      designation: "Web Developer",
+      src: UmaisReview,
     },
     {
-      quote:
-        "Outstanding support and robust features. It's rare to find a product that delivers on all its promises.",
-      name: "James Kim",
-      designation: "Engineering Lead at DataPro",
-      src: "https://images.unsplash.com/photo-1636041293178-808a6762ab39?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      quote:"The UI/UX Design course at Digital Era was exceptional. The instructors were knowledgeable, and the hands-on projects allowed me to build a strong portfolio. I highly recommend it to anyone looking to pursue a career in design.",
+      name: "Awais Yousaf",
+      designation: "Graphic & UI/UX Designer",
+      src: Awais,
     },
     {
       quote:
