@@ -210,7 +210,7 @@ const Instructor = () => {
           transition={{ duration: 0.6, type: 'spring' as const }}
           className="text-2xl md:text-4xl font-bold text-[#0D76BC] mb-2 md:mb-4"
         >
-          Meet Our Instructors
+          Meet Our Team
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
