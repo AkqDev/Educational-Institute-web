@@ -56,10 +56,10 @@ const coursesData = [
   return (
     <div className="h-auto bg-[#000] w-auto">
     <div className="mt-40">
-      <h1 className="text-3xl md:text-4xl font-bold font-poppins text-center text-[#0D76BC] px-3">
+      <h1 className="text-3xl md:text-4xl font-bold font-poppins text-center text-[#0D76BC] ">
   Our Courses
 </h1>
-<p className="text-white text-center mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+<p className="text-white text-center mt-6 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed px-5">
   Your Path To IT Excellence begins here! Explore our carefully curated programs that cover 
   everything from web development and digital marketing to AI, app development, and more. 
   Gain industry-ready skills and hands-on experience to boost your career and achieve success.
