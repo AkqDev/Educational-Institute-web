@@ -5,7 +5,14 @@ import AkbarVideo from "../assets/AkbarVideo.mp4";
 
 const videoVariants = {
   hidden: { opacity: 0, scale: 0.95 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { 
+      duration: 0.8, 
+      ease: "easeOut" as const  // Add 'as const' to fix TypeScript error
+    } 
+  },
 };
 
 const TestimonialsVideos: React.FC = () => {
