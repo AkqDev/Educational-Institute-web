@@ -57,7 +57,7 @@ const Instructor = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isPaused = useRef(false);
-  const speed = 2.6;
+  const speed = 1.6;
   const isInView = useInView(containerRef, { once: false, amount: 0.3 });
   const controls = useAnimation();
 
