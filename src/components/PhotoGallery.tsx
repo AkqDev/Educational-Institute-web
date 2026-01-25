@@ -1,4 +1,3 @@
-// components/PhotoGallery.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -28,9 +27,11 @@ export const PhotoGallery = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  if (isMobile) return null;
-
+  // ALL HOOKS MUST BE CALLED BEFORE ANY CONDITIONAL RETURNS
   useEffect(() => {
+    // Don't run animation timers on mobile
+    if (isMobile) return;
+    
     const visibilityTimer = setTimeout(() => {
       setIsVisible(true);
     }, animationDelay * 1000);
@@ -43,7 +44,10 @@ export const PhotoGallery = ({
       clearTimeout(visibilityTimer);
       clearTimeout(animationTimer);
     };
-  }, [animationDelay]);
+  }, [animationDelay, isMobile]); // Add isMobile to dependencies
+
+  // Now you can return null after all hooks
+  if (isMobile) return null;
 
   const containerVariants: Variants = {
     hidden: { opacity: 1 },
@@ -64,7 +68,7 @@ export const PhotoGallery = ({
       rotate: 0,
       scale: 1,
       transition: {
-        type: "spring" as const, // Fix: Add 'as const' to make it a literal type
+        type: "spring" as const,
         stiffness: 70,
         damping: 12,
         delay: custom.order * 0.15,
