@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, TouchEvent, MouseEvent } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import type { TouchEvent, MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -118,7 +119,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({ slides = [] }) => {
         <ChevronRight color="white" />
       </button>
 
-      <style jsx>{`
+      <style>{`
         .perspective-1000 {
           perspective: 1000px;
         }
