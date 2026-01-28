@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-[100vh] pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden"
+      className="w-full h-[100vh] flex items-center justify-center px-4 font-poppins relative overflow-hidden"
     >
       {/* ---------------- Backgrounds ---------------- */}
       {/* AuroraBackground only on md+ screens */}
@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
     loop
     muted
     playsInline
-    className="w-full h-[80vh] object-cover"
+    className="w-full h-[90vh] object-cover"
     // <-- Add this line to slow down the video
     onLoadedMetadata={(e) => {
       const video = e.currentTarget;
