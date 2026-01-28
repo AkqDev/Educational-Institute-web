@@ -38,7 +38,7 @@ const Testimonials = () => {
         <h2 className="text-4xl font-bold tracking-tight text-[#0D76BC]">
           What Our Students Say
         </h2>
-        <p className="mt-4 text-xl text-gray-100 max-w-3xl mx-auto">
+        <p className="mt-4 text-md text-gray-100 max-w-3xl mx-auto">
           Hear from industry leaders who have transformed their businesses with our platform.
         </p>
       </div>
