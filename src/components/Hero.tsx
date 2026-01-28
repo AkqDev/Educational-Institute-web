@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
     loop
     muted
     playsInline
-    className="w-full h-full object-cover"
+    className="w-full h-[80vh] object-cover"
     // <-- Add this line to slow down the video
     onLoadedMetadata={(e) => {
       const video = e.currentTarget;
