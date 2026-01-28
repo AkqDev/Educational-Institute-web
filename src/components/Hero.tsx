@@ -1,5 +1,5 @@
 "use client";
-
+import herovideo from '../assets/herovideo.mp4';
 import { useEffect } from 'react';
 import navtc from "../assets/navtc.png";
 import youth from "../assets/youth.png";
@@ -37,11 +37,7 @@ const Hero: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        type: "spring" as const,
-        damping: 12,
-        stiffness: 100,
-      }
+      transition: { type: "spring" as const, damping: 12, stiffness: 100 }
     }
   };
 
@@ -50,12 +46,7 @@ const Hero: React.FC = () => {
     visible: {
       scale: 1,
       opacity: 1,
-      transition: {
-        type: "spring" as const,
-        damping: 15,
-        stiffness: 200,
-        delay: 0.5,
-      }
+      transition: { type: "spring" as const, damping: 15, stiffness: 200, delay: 0.5 }
     },
     hover: { scale: 1.05 },
     tap: { scale: 0.95 }
@@ -66,16 +57,10 @@ const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       x: 0,
-      transition: {
-        type: "spring" as const,
-        damping: 15,
-        stiffness: 100,
-        delay: 0.7,
-      }
+      transition: { type: "spring" as const, damping: 15, stiffness: 100, delay: 0.7 }
     }
   };
 
-  // ---------------- WhatsApp Click Handler ----------------
   const handleWhatsApp = () => {
     const phoneNumber = "923701393075";
     const message = encodeURIComponent(
@@ -89,19 +74,39 @@ const Hero: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="w-full h-[100vh] pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden bg-black"
+      className="w-full h-[100vh] pt-10 md:pt-20 flex items-center justify-center px-4 font-poppins relative overflow-hidden"
     >
-      {/* Aurora Background */}
-      <AuroraBackground
-        speed={0.7}
-        blend={0.8}
-        colorStops={['#0D76BC', '#1E90FF', '#0D76BC']}
-        amplitude={1.2}
-      />
+      {/* ---------------- Backgrounds ---------------- */}
+      {/* AuroraBackground only on md+ screens */}
+      <div className="hidden md:block absolute inset-0 z-0">
+        <AuroraBackground
+          speed={0.7}
+          blend={0.8}
+          colorStops={['#0D76BC', '#1E90FF', '#0D76BC']}
+          amplitude={1.2}
+        />
+      </div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/20 z-0" />
+{/* Mobile video background */}
+<div className="block md:hidden absolute inset-0 z-0">
+  <video
+    src={herovideo}
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="w-full h-full object-cover"
+    // <-- Add this line to slow down the video
+    onLoadedMetadata={(e) => {
+      const video = e.currentTarget;
+      video.playbackRate = 0.7; // 0.7x speed, adjust as needed
+    }}
+  />
+  <div className="absolute inset-0 bg-black/50" /> {/* overlay */}
+</div>
 
+
+      {/* ---------------- Foreground Content ---------------- */}
       <div className="relative container mx-auto z-10">
         <motion.div
           ref={ref}
@@ -110,7 +115,6 @@ const Hero: React.FC = () => {
           variants={containerVariants}
           className="flex items-center justify-center text-center"
         >
-          {/* CENTER CONTENT */}
           <motion.div
             variants={itemVariants}
             className="text-white w-auto md:max-w-4xl relative z-20"
@@ -123,12 +127,7 @@ const Hero: React.FC = () => {
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{
-                  type: "spring" as const,
-                  damping: 15,
-                  stiffness: 200,
-                  delay: 0.2,
-                }}
+                transition={{ type: "spring" as const, damping: 15, stiffness: 200, delay: 0.2 }}
                 className="text-cyan-400 inline-block"
               >
                 1%
@@ -156,7 +155,6 @@ const Hero: React.FC = () => {
               variants={itemVariants}
               className="flex flex-col md:flex-row gap-6 items-center justify-center mt-10"
             >
-              {/* WhatsApp Enroll Button */}
               <motion.button
                 onClick={handleWhatsApp}
                 variants={buttonVariants}

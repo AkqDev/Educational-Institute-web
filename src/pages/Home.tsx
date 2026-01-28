@@ -5,16 +5,17 @@ import Values from '../components/Values'
 import Faqs from '../components/Faqs'
 import Stats from '../components/Stats'
 import Testimonials from '../components/Testimonials'
-import CourseCarousel from '../components/CourseCarousel'
 import Instructor from '../components/Instructor'
 import Events from '../components/Events'
+import Slides from '../components/Slides'
+
 
 const Home = () => {
   return (
     <div>
       <Hero/>
       <About/>
-      <CourseCarousel/>
+      <Slides/>
       <Map/>
       <Values/>
       <Instructor/>
