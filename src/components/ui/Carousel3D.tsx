@@ -76,21 +76,21 @@ const Carousel3D: React.FC<Carousel3DProps> = ({ slides = [] }) => {
 
   return (
     <div
-      className="relative w-full h-[75vh] md:h-screen bg-black overflow-hidden"
+      className="relative w-full h-[70vh] md:h-screen bg-black overflow-hidden"
       onMouseDown={handleStart}
       onMouseUp={handleEnd}
       onTouchStart={handleStart}
       onTouchEnd={handleEnd}
     >
-      {/* Heading with proper positioning */}
-      <div className="relative z-50 pt-6 pb-2">
+      {/* Heading with minimal spacing */}
+      <div className="relative z-50 pt-15 md:pt-20">
         <h1 className="text-center text-4xl text-[#0D76BC] font-[poppins] font-bold">
           Our Courses
         </h1>
       </div>
       
-      {/* Carousel container - adjusted to not overlap heading */}
-      <div className="absolute inset-0 flex items-center justify-center perspective-1000 pt-20">
+      {/* Carousel container with less padding top */}
+      <div className="absolute inset-0 flex items-center justify-center perspective-1000 pt-12 md:pt-14">
         {displaySlides.map((slide, index) => {
           const t = getTransform(index);
           return (
