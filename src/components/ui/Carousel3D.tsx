@@ -96,7 +96,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({ slides = [] }) => {
           return (
             <motion.div
               key={index}
-              className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[480px] rounded-2xl overflow-hidden shadow-2xl"
+              className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[480px] rounded-2xl overflow-hidden shadow-2xl"
               style={{ zIndex: t.zIndex }}
               animate={t}
               transition={{ type: "spring", stiffness: 200, damping: 25 }}
