@@ -83,7 +83,7 @@ const Carousel3D: React.FC<Carousel3DProps> = ({ slides = [] }) => {
       onTouchEnd={handleEnd}
     >
       {/* Heading with minimal spacing */}
-      <div className="relative z-50 pt-15 md:pt-20">
+      <div className="relative z-50 pt-20">
         <h1 className="text-center text-4xl text-[#0D76BC] font-[poppins] font-bold">
           Our Courses
         </h1>
