@@ -158,7 +158,7 @@ const Stats = () => {
     className="flex items-center justify-center gap-3
                bg-[#2A2D2D] text-white
                px-5 py-3 rounded-full
-               shadow-lg hover:scale-105 transition-transform"
+               shadow-lg hover:scale-105 transition- my-2"
   >
     <div className="text-2xl text-[#0D76BC] flex items-center justify-center">
       {feature.icon}
