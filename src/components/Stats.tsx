@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-import { FaLightbulb, FaSmile, FaAward } from "react-icons/fa";
+import {
+  FaLightbulb,
+  FaSmile,
+  FaAward,
+  FaUserGraduate,
+  FaBriefcase,
+  FaFlask,
+} from "react-icons/fa";
+
 
 type Stat = {
   value: number;
@@ -110,10 +118,13 @@ const Stats = () => {
   const [startCounting, setStartCounting] = useState(false);
 
   const features = [
-    { icon: <FaLightbulb />, label: "Continuous Innovation" },
-    { icon: <FaSmile />, label: "Positive Working Experiences" },
-    { icon: <FaAward />, label: "Commitment to Excellence" },
-  ];
+  { icon: <FaLightbulb />, label: "Continuous Innovation" },
+  { icon: <FaSmile />, label: "Positive Working Experiences" },
+  { icon: <FaAward />, label: "Commitment to Excellence" },
+  { icon: <FaUserGraduate />, label: "Internship Available" },
+  { icon: <FaBriefcase />, label: "Job Opportunities" },
+  { icon: <FaFlask />, label: "Labs Available" },
+];
 
   return (
     <section className="relative w-full py-24 px-4 overflow-hidden">
@@ -140,16 +151,25 @@ const Stats = () => {
         className="w-full h-auto md:flex justify-center items-center p-4 mt-16 md:mt-24 hidden"
       >
         <div className="grid md:grid-cols-3 justify-center items-center md:gap-2 w-full max-w-6xl">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              variants={featureItemVariants}
-              className="flex flex-row items-center gap-2 bg-[#2A2D2D] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform"
-            >
-              <div className="text-2xl text-[#0D76BC]">{feature.icon}</div>
-              <p className="text-sm md:text-base p-2">{feature.label}</p>
-            </motion.div>
-          ))}
+         {features.map((feature, idx) => (
+  <motion.div
+    key={idx}
+    variants={featureItemVariants}
+    className="flex items-center justify-center gap-3
+               bg-[#2A2D2D] text-white
+               px-5 py-3 rounded-full
+               shadow-lg hover:scale-105 transition-transform"
+  >
+    <div className="text-2xl text-[#0D76BC] flex items-center justify-center">
+      {feature.icon}
+    </div>
+
+    <p className="text-sm md:text-base leading-none">
+      {feature.label}
+    </p>
+  </motion.div>
+))}
+
         </div>
       </motion.div>
     </section>
