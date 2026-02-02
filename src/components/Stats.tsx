@@ -10,8 +10,7 @@ import {
   FaBriefcase,
   FaFlask,
 } from "react-icons/fa";
-import { gsap } from 'gsap';
-import { scrollTriggerAnimation, staggerAnimation } from '../lib/gsap';
+import { staggerAnimation } from '../lib/gsap';
 
 
 type Stat = {
@@ -124,13 +123,13 @@ const Stats = () => {
   useEffect(() => {
     // Animate stats cards with stagger effect
     if (statsRef.current) {
-      const statCards = statsRef.current.querySelectorAll('.stat-card');
+      const statCards = Array.from(statsRef.current.querySelectorAll('.stat-card'));
       staggerAnimation(statCards, 'scaleIn');
     }
 
     // Animate feature items
     if (featuresRef.current) {
-      const featureItems = featuresRef.current.querySelectorAll('.feature-item');
+      const featureItems = Array.from(featuresRef.current.querySelectorAll('.feature-item'));
       setTimeout(() => {
         staggerAnimation(featureItems, 'fadeInUp');
       }, 500);

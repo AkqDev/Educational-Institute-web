@@ -1,4 +1,4 @@
-import { useEffect, useRef, ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { scrollTriggerAnimation } from '../lib/gsap';
 
 interface AnimatedSectionProps {

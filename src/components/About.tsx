@@ -5,8 +5,7 @@ import mission from "../assets/mission.png";
 import { motion, useInView, easeInOut, easeOut } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useRef, useEffect } from "react";
-import { scrollTriggerAnimation, staggerAnimation } from '../lib/gsap';
-import AnimatedSection from './AnimatedSection';
+import { scrollTriggerAnimation } from '../lib/gsap';
 
 /* ------------------ Animation Variants ------------------ */
 const containerVariants: Variants = {

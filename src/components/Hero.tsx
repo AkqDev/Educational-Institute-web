@@ -16,7 +16,6 @@ const Hero: React.FC = () => {
   });
 
   const controls = useAnimation();
-  const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -29,8 +28,6 @@ const Hero: React.FC = () => {
       controls.start('visible');
       
       // GSAP animations
-      const tl = gsap.timeline();
-      
       // Animate title with text reveal effect
       if (titleRef.current) {
         textReveal(titleRef.current, 0.2);
