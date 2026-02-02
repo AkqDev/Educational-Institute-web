@@ -7,6 +7,7 @@ import InstructorShafeeq from '../assets/InstructorShafeeq.png';
 import InstructorWasif from '../assets/InstructorWasif.png';
 import InstructorMuneeb from '../assets/InstructorMuneeb.png'
 import InstructorAwais from '../assets/InstructorAwais.png';
+import khayam from '../assets/khayam.png'
 
 const Instructor = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -47,6 +48,11 @@ const Instructor = () => {
       img: InstructorMuneeb,
       name: 'Rana Muneeb Ahmad',
       role: 'Social media handler',
+    },
+    {
+      img : khayam,
+      name:'khayam Riaz',
+      role:'Content Creatore'
     },
     {
       img: InstructorAwais,
