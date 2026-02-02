@@ -6,7 +6,6 @@ import youth from "../assets/youth.png";
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AuroraBackground from './AuroraBackground';
-import { gsap } from 'gsap';
 import { fadeInUp, textReveal, scaleIn, floatingAnimation } from '../lib/gsap';
 
 const Hero: React.FC = () => {
