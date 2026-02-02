@@ -207,12 +207,12 @@ const Hero: React.FC = () => {
               >
                 Enroll Now
               </motion.button>
-
+              
               <motion.div
                 ref={badgeRef}
                 variants={badgeVariants}
                 whileHover={{ scale: 1.05 }}
-                className="border border-gray-100/10 rounded-2xl p-5 flex flex-row items-center gap-4 backdrop-blur-md shadow-xl bg-black/30 z-20 opacity-0"
+                className="border border-gray-100/10 rounded-2xl p-5 flex flex-row items-center gap-4 backdrop-blur-md shadow-xl bg-black/30 z-20 opacity-0 ml-4"
               >
                 <div ref={logoRef} className="flex flex-row items-center gap-4">
                   <motion.img

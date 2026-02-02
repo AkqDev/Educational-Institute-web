@@ -100,7 +100,7 @@ export const AnimatedTestimonials = ({
             <div className="w-full lg:w-3/5 flex flex-col justify-between min-h-64 lg:min-h-80">
               <div>
                 <blockquote className="text-lg sm:text-xl lg:text-2xl text-gray-200 mb-6 lg:mb-8 leading-relaxed font-light">
-                  "{testimonials[currentIndex].quote}"
+                  {testimonials[currentIndex].quote}
                 </blockquote>
                 
                 <div className="border-l-4 border-blue-500 pl-4 lg:pl-6 py-1 lg:py-2">
