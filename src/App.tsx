@@ -5,16 +5,17 @@ import Programs from "./pages/Programs";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import PageTransition from './components/PageTransition';
 
 const App = () => {
   return (
     <>
     <Navbar/>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/Our-courses" element={<Programs />} />
-        <Route path="/testimonials" element={<TestimonialsPage />} />
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/Our-courses" element={<PageTransition><Programs /></PageTransition>} />
+        <Route path="/testimonials" element={<PageTransition><TestimonialsPage /></PageTransition>} />
       </Routes>
     <Footer/>
     </>

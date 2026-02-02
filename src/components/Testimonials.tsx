@@ -3,8 +3,32 @@ import hassan from '../assets/hassan.png'
 import Sarmad from '../assets/Sarmad.png'
 import UmaisReview from '../assets/UmaisReview.png'
 import Awais from '../assets/Awais.png'
+import { useEffect, useRef } from 'react';
+import { scrollTriggerAnimation } from '../lib/gsap';
 
 const Testimonials = () => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const testimonialsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (titleRef.current) {
+      scrollTriggerAnimation(titleRef.current, 'fadeInUp');
+    }
+    
+    if (subtitleRef.current) {
+      setTimeout(() => {
+        scrollTriggerAnimation(subtitleRef.current!, 'fadeInUp');
+      }, 200);
+    }
+    
+    if (testimonialsRef.current) {
+      setTimeout(() => {
+        scrollTriggerAnimation(testimonialsRef.current!, 'scaleIn');
+      }, 400);
+    }
+  }, []);
+
   const testimonials = [
     {
       quote:"I learned freelancing from Digital Era of IT and highly recommend it for anyone looking to grow and build a successful IT career. Expert trainers, a supportive environment, and industry-relevant skills made it a truly career-shaping journey.",
@@ -35,19 +59,27 @@ const Testimonials = () => {
   return (
     <div className="py-20 px-4 sm:px-6 lg:px-8 bg-[#000]">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold tracking-tight text-[#0D76BC]">
+        <h2 
+          ref={titleRef}
+          className="text-4xl font-bold tracking-tight text-[#0D76BC] opacity-0"
+        >
           What Our Students Say
         </h2>
-        <p className="mt-4 text-md text-gray-100 max-w-3xl mx-auto">
+        <p 
+          ref={subtitleRef}
+          className="mt-4 text-md text-gray-100 max-w-3xl mx-auto opacity-0"
+        >
           Hear from industry leaders who have transformed their businesses with our platform.
         </p>
       </div>
       
-      <AnimatedTestimonials 
-        testimonials={testimonials}
-        autoplay={true}
-        autoplayInterval={5000}
-      />
+      <div ref={testimonialsRef} className="opacity-0">
+        <AnimatedTestimonials 
+          testimonials={testimonials}
+          autoplay={true}
+          autoplayInterval={5000}
+        />
+      </div>
     </div>
   );
 };

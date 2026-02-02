@@ -1,11 +1,13 @@
 "use client";
 import herovideo from '../assets/herovideo.mp4';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import navtc from "../assets/navtc.png";
 import youth from "../assets/youth.png";
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AuroraBackground from './AuroraBackground';
+import { gsap } from 'gsap';
+import { fadeInUp, textReveal, scaleIn, floatingAnimation } from '../lib/gsap';
 
 const Hero: React.FC = () => {
   const [ref, inView] = useInView({
@@ -14,10 +16,51 @@ const Hero: React.FC = () => {
   });
 
   const controls = useAnimation();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (inView) {
       controls.start('visible');
+      
+      // GSAP animations
+      const tl = gsap.timeline();
+      
+      // Animate title with text reveal effect
+      if (titleRef.current) {
+        textReveal(titleRef.current, 0.2);
+      }
+      
+      // Animate subtitle and description
+      if (subtitleRef.current) {
+        fadeInUp(subtitleRef.current, 0.4);
+      }
+      
+      if (descriptionRef.current) {
+        fadeInUp(descriptionRef.current, 0.6);
+      }
+      
+      // Animate button with scale effect
+      if (buttonRef.current) {
+        scaleIn(buttonRef.current, 0.8);
+      }
+      
+      // Animate badge
+      if (badgeRef.current) {
+        fadeInUp(badgeRef.current, 1.0);
+      }
+      
+      // Add floating animation to logos
+      if (logoRef.current) {
+        setTimeout(() => {
+          floatingAnimation(logoRef.current!);
+        }, 1500);
+      }
     }
   }, [controls, inView]);
 
@@ -120,8 +163,9 @@ const Hero: React.FC = () => {
             className="text-white w-auto md:max-w-4xl relative z-20"
           >
             <motion.h1
+              ref={titleRef}
               variants={itemVariants}
-              className="text-3xl md:text-6xl font-bold leading-tight"
+              className="text-3xl md:text-6xl font-bold leading-tight opacity-0"
             >
               Become Top{" "}
               <motion.span
@@ -136,16 +180,18 @@ const Hero: React.FC = () => {
             </motion.h1>
 
             <motion.p
+              ref={subtitleRef}
               variants={itemVariants}
-              className="mt-6 text-lg lg:text-[18px] text-gray-200"
+              className="mt-6 text-lg lg:text-[18px] text-gray-200 opacity-0"
             >
               Join Pakistan&apos;s Elite IT Training Institute, Building World
               Class IT Professionals
             </motion.p>
 
             <motion.p
+              ref={descriptionRef}
               variants={itemVariants}
-              className="mt-4 text-base lg:text-[16px] text-gray-300 leading-relaxed"
+              className="mt-4 text-base lg:text-[16px] text-gray-300 leading-relaxed opacity-0"
             >
               Learn from experienced industry mentors, gain hands-on exposure
               through real-world projects, and master cutting-edge technologies.
@@ -156,34 +202,38 @@ const Hero: React.FC = () => {
               className="flex flex-col md:flex-row gap-6 items-center justify-center mt-10"
             >
               <motion.button
+                ref={buttonRef}
                 onClick={handleWhatsApp}
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="bg-[#0D76BC] text-white px-10 py-4 w-full md:w-[350px] rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl z-20"
+                className="bg-[#0D76BC] text-white px-10 py-4 w-full md:w-[350px] rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl z-20 opacity-0 transform-gpu"
               >
                 Enroll Now
               </motion.button>
 
               <motion.div
+                ref={badgeRef}
                 variants={badgeVariants}
                 whileHover={{ scale: 1.05 }}
-                className="border border-gray-100/10 rounded-2xl p-5 flex gap-6 backdrop-blur-md shadow-xl bg-black/30 z-20"
+                className="border border-gray-100/10 rounded-2xl p-5 flex flex-row items-center gap-4 backdrop-blur-md shadow-xl bg-black/30 z-20 opacity-0"
               >
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring" as const, stiffness: 400 }}
-                  src={navtc}
-                  alt="NAVTTC"
-                  className="w-24 h-auto"
-                />
-                <motion.img
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring" as const, stiffness: 400 }}
-                  src={youth}
-                  alt="Youth Program"
-                  className="w-24 h-auto"
-                />
+                <div ref={logoRef} className="flex flex-row items-center gap-4">
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring" as const, stiffness: 400 }}
+                    src={navtc}
+                    alt="NAVTTC"
+                    className="w-24 h-auto"
+                  />
+                  <motion.img
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring" as const, stiffness: 400 }}
+                    src={youth}
+                    alt="Youth Program"
+                    className="w-24 h-auto"
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </motion.div>

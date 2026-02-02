@@ -4,7 +4,9 @@ import vision from "../assets/vision.png";
 import mission from "../assets/mission.png";
 import { motion, useInView, easeInOut, easeOut } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import { scrollTriggerAnimation, staggerAnimation } from '../lib/gsap';
+import AnimatedSection from './AnimatedSection';
 
 /* ------------------ Animation Variants ------------------ */
 const containerVariants: Variants = {
@@ -27,10 +29,20 @@ const imageVariants: Variants = {
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const missionRef = useRef<HTMLDivElement | null>(null);
+  const visionRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(sectionRef, {
     margin: "-120px",
     once: false,
   });
+
+  useEffect(() => {
+    // Add stagger animation to mission and vision sections
+    if (missionRef.current && visionRef.current) {
+      scrollTriggerAnimation(missionRef.current, 'fadeInLeft');
+      scrollTriggerAnimation(visionRef.current, 'fadeInRight');
+    }
+  }, []);
 
   return (
     <div className="w-full bg-black py-16 md:py-20 px-4">
@@ -43,7 +55,7 @@ const About = () => {
       >
 
         {/* ================= Mission ================= */}
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 backdrop-blur-xl py-6">
+        <div ref={missionRef} className="flex flex-col md:flex-row items-center gap-8 md:gap-12 backdrop-blur-xl py-6 opacity-0">
           
           {/* Image */}
           <motion.div
@@ -55,7 +67,7 @@ const About = () => {
             <img
               src={mission}
               alt="Mission"
-              className="w-[260px] md:w-[340px] rounded-2xl shadow-xl"
+              className="w-[260px] md:w-[340px] rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500"
             />
           </motion.div>
 
@@ -77,7 +89,7 @@ const About = () => {
         </div>
 
         {/* ================= Vision ================= */}
-        <div className="flex flex-col-reverse md:flex-row items-center gap-8 backdrop-blur-xl py-6">
+        <div ref={visionRef} className="flex flex-col-reverse md:flex-row items-center gap-8 backdrop-blur-xl py-6 opacity-0">
           
           {/* Text */}
           <div className="w-full md:w-1/2 text-center md:text-left px-2">
@@ -104,7 +116,7 @@ const About = () => {
             <img
               src={vision}
               alt="Vision"
-              className="w-[260px] md:w-[340px] rounded-2xl shadow-xl"
+              className="w-[260px] md:w-[340px] rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500"
             />
           </motion.div>
         </div>

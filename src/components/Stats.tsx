@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import {
   FaLightbulb,
@@ -10,6 +10,8 @@ import {
   FaBriefcase,
   FaFlask,
 } from "react-icons/fa";
+import { gsap } from 'gsap';
+import { scrollTriggerAnimation, staggerAnimation } from '../lib/gsap';
 
 
 type Stat = {
@@ -116,6 +118,24 @@ const StatCard = ({
 // ---------------- Main Component ----------------
 const Stats = () => {
   const [startCounting, setStartCounting] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Animate stats cards with stagger effect
+    if (statsRef.current) {
+      const statCards = statsRef.current.querySelectorAll('.stat-card');
+      staggerAnimation(statCards, 'scaleIn');
+    }
+
+    // Animate feature items
+    if (featuresRef.current) {
+      const featureItems = featuresRef.current.querySelectorAll('.feature-item');
+      setTimeout(() => {
+        staggerAnimation(featureItems, 'fadeInUp');
+      }, 500);
+    }
+  }, []);
 
   const features = [
   { icon: <FaLightbulb />, label: "Continuous Innovation" },
@@ -130,6 +150,7 @@ const Stats = () => {
     <section className="relative w-full py-24 px-4 overflow-hidden">
       {/* Stats Section */}
       <motion.div
+        ref={statsRef}
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -138,12 +159,15 @@ const Stats = () => {
         className="mx-auto max-w-7xl flex flex-wrap flex-col md:flex-row items-center justify-center gap-4"
       >
         {stats.map((stat, index) => (
-          <StatCard key={index} stat={stat} startCounting={startCounting} />
+          <div key={index} className="stat-card opacity-0">
+            <StatCard stat={stat} startCounting={startCounting} />
+          </div>
         ))}
       </motion.div>
 
       {/* Features Section */}
       <motion.div
+        ref={featuresRef}
         variants={featureContainerVariants}
         initial="hidden"
         whileInView="visible"
@@ -155,10 +179,10 @@ const Stats = () => {
   <motion.div
     key={idx}
     variants={featureItemVariants}
-    className="flex items-center justify-center gap-3
+    className="feature-item flex items-center justify-center gap-3
                bg-[#2A2D2D] text-white
                px-5 py-3 rounded-full
-               shadow-lg hover:scale-105 transition- my-2"
+               shadow-lg hover:scale-105 transition-transform my-1 opacity-0"
   >
     <div className="text-2xl text-[#0D76BC] flex items-center justify-center">
       {feature.icon}
